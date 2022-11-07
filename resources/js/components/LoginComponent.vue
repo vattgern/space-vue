@@ -143,4 +143,30 @@
     background: white;
     color: black;
 }
+@media screen and (max-width:425px) {
+    .modalLogin{
+        width: 100vw;
+        height: 100vh;
+    }
+    .modal-shadow{
+        display: none;
+    }
+    .modal__header{
+        width: 100%;
+    }
+    .modal__body{
+        width: 90%;
+    }
+    .modal__form{
+        height: 50%;
+    }
+    .login__btn{
+        height: 20%;
+        width: 35%;
+        letter-spacing: 0.5rem;
+        border: none;
+        background: white;
+        color: black;
+    }
+}
 </style>

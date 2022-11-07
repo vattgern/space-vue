@@ -207,4 +207,37 @@
     flex-direction: row;
     gap: 1.25rem;
 }
+@media screen and (max-width: 425px){
+    .about__block{
+        flex-direction: column-reverse;
+    }
+    .about__us{
+        width: 100%;
+        height: 50vh;
+    }
+    .about__info{
+        width: 100%;
+        height: 50vh;
+    }
+    .us__img{
+        width: 35%;
+        height: 75%;
+    }
+    .us__info p{
+        font-size: 1.35rem;
+    }
+    .info__text p{
+        margin: 0 2.5%;
+        text-align: center;
+    }
+}
+@media screen and (max-width:375px){
+    .us__img{
+        width: 46%;
+        height: 75%;
+    }
+    .info__text p{
+        font-size: 14px;
+    }
+}
 </style>

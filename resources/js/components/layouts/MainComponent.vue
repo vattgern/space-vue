@@ -60,6 +60,11 @@
         background: rgba(0,0,0,0.75);
         z-index: 9;
     }
+    @media screen and (max-width:425px){
+        .modal-shadow{
+            display: none;
+        }
+    }
     .login-enter-active,
     .login-leave-active{
         transition: all 0.4s 0.25s ease-in;
