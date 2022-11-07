@@ -13,14 +13,22 @@
                 </figure>
             </div>
             <div class="modal__body">
-                <form action="" class="modal__form">
+                <form class="modal__form">
                     <label for="#email">
-                        <input type="email" name="email" id="email" placeholder="E-mail">
+                        <input type="email"
+                                name="email"
+                                id="email"
+                                v-model="this.email"
+                                placeholder="E-mail">
                     </label>
                     <label for="#password">
-                        <input type="password" name="password" id="password" placeholder="Password">
+                        <input type="password"
+                                name="password"
+                                id="password"
+                                v-model="this.password"
+                                placeholder="Password">
                     </label>
-                    <button class="login__btn">
+                    <button @click.prevent="formData" class="login__btn">
                         LOGIN
                     </button>
                 </form>
@@ -30,12 +38,32 @@
 
 <script>
     export default {
-        mounted() {
-
+        data(){
+            return{
+                email: '',
+                password: '',
+            }
         },
         methods:{
             closeModel(){
                 this.$store.state.loginModel = false;
+            },
+            formData(){
+                axios.get('/sanctum/csrf-cookie').then(response => {
+
+                    axios.post('http://127.0.0.1:8000/api/login',{
+                        'email': this.email,
+                        'password': this.password
+
+                    }).then(response =>{
+                        console.log(response);
+                        window.localStorage.setItem('token',response.data['access_token']);
+                        this.$router.push({
+                            name: 'main'
+                        });
+                    });
+
+                });
             }
         }
     }
