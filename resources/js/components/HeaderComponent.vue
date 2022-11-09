@@ -10,6 +10,7 @@
             <router-link :to="{name: 'about'}">about</router-link>
             <router-link :to="{name: 'main'}">planets</router-link>
             <router-link :to="{name: 'main'}">letter to space</router-link>
+            <router-link :to="{name: 'profile'}" v-show="profile">profile</router-link>
           </ul>
         </nav>
         <nav class="header_nav nav_moblie" v-show="burgerMenu">
@@ -30,6 +31,7 @@
         </nav>
         <div class="header_menu">
             <img :src="'./images/icons/Burger.svg'"
+                 v-show="authMenu"
                  v-on:click="showModel"
                  alt="qwerty" />
         </div>
@@ -40,11 +42,20 @@
     export default {
         data(){
             return{
-                burgerMenu: false
+                burgerMenu: false,
+                authMenu: false,
+                profile: false
             }
         },
         mounted(){
-            console.log(window.outerWidth);
+            this.authMenu = this.showMenu();
+            this.profile = this.showProfile();
+        },
+        watch:{
+            '$route'(){
+                this.$data.profile = this.showProfile();
+                this.$data.authMenu = this.showMenu();
+            }
         },
         methods:{
             showModel(){
@@ -56,6 +67,19 @@
             },
             showLogin(){
                 this.$store.state.loginModel = true;
+            },
+            checkProfile(){
+                if(window.localStorage.getItem('token')){
+                    this.$store.state.auth = true;
+                } else{
+                    this.$store.state.auth = false;
+                }
+            },
+            showProfile(){
+                return window.localStorage.getItem('token') ? true : false;
+            },
+            showMenu(){
+                return window.localStorage.getItem('token') ? false : true;
             }
         }
     }

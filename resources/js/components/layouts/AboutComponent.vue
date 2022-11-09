@@ -76,9 +76,6 @@
                 ]
             }
         },
-        mounted() {
-            console.log('Component mounted.')
-        },
         methods:{
             sliderLeft(){
                 if(this.sliderIndex === 0){
@@ -93,7 +90,7 @@
                 } else {
                     this.sliderIndex ++;
                 }
-        },
+            },
         }
     }
 </script>

@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import api from '../api';
+
     export default {
         data(){
             return{
@@ -51,15 +53,20 @@
             formData(){
                 axios.get('/sanctum/csrf-cookie').then(response => {
 
-                    axios.post('http://127.0.0.1:8000/api/login',{
+                    api.post('http://127.0.0.1:8000/api/login',{
                         'email': this.email,
                         'password': this.password
 
                     }).then(response =>{
-                        console.log(response);
+                        this.email = '';
+                        this.password = '';
+
                         window.localStorage.setItem('token',response.data['access_token']);
+
+                        this.$store.state.loginModel = false;
+
                         this.$router.push({
-                            name: 'main'
+                            name: 'profile'
                         });
                     });
 
