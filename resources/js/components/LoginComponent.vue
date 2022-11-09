@@ -14,23 +14,50 @@
             </div>
             <div class="modal__body">
                 <form class="modal__form">
-                    <label for="#email">
+                    <label for="#email" v-show="modeLogin">
                         <input type="email"
                                 name="email"
                                 id="email"
-                                v-model="this.email"
+                                v-model="this.login.email"
                                 placeholder="E-mail">
                     </label>
-                    <label for="#password">
+
+                    <label for="#email" v-show="!modeLogin">
+                        <input type="email"
+                                name="email"
+                                id="email"
+                                v-model="this.register.email"
+                                placeholder="E-mail">
+                    </label>
+
+                    <label for="#password" v-show="modeLogin">
                         <input type="password"
                                 name="password"
                                 id="password"
-                                v-model="this.password"
+                                v-model="this.login.password"
                                 placeholder="Password">
                     </label>
+
+                    <label for="#password" v-show="!modeLogin">
+                        <input type="password"
+                                name="password"
+                                id="password"
+                                v-model="this.register.password"
+                                placeholder="Password">
+                    </label>
+                    <label for="#password" v-show="!modeLogin">
+                        <input type="password"
+                                name="password"
+                                id="password"
+                                v-model="this.register.confirmPass"
+                                placeholder="Confirm password">
+                    </label>
                     <button @click.prevent="formData" class="login__btn">
-                        LOGIN
+                        {{ this.modeLogin ? 'LOGIN' : 'REGISTRER' }}
                     </button>
+                    <p class="changeModeLogin" v-on:click="changeMode">
+                        {{ this.modeLogin ? 'No account?' : 'Have account?' }}
+                    </p>
                 </form>
             </div>
         </div>
@@ -42,13 +69,28 @@ import api from '../api';
     export default {
         data(){
             return{
-                email: '',
-                password: '',
+                modeLogin: true,
+                login: {
+                    email: '',
+                    password: '',
+                },
+                register:{
+                    email: '',
+                    password: '',
+                    confirmPass: ''
+                }
             }
         },
         methods:{
             closeModel(){
                 this.$store.state.loginModel = false;
+            },
+            changeMode(){
+                if(this.modeLogin){
+                    this.modeLogin = false;
+                } else{
+                    this.modeLogin = true;
+                }
             },
             formData(){
                 axios.get('/sanctum/csrf-cookie').then(response => {
@@ -177,6 +219,14 @@ import api from '../api';
     border: none;
     background: white;
     color: black;
+}
+.changeModeLogin{
+    cursor: pointer;
+    margin-top: 5%;
+    color: white;
+    font-family: sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.15rem;
 }
 @media screen and (max-width:425px) {
     .modalLogin{
