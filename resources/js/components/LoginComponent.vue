@@ -94,24 +94,46 @@ import api from '../api';
             },
             formData(){
                 axios.get('/sanctum/csrf-cookie').then(response => {
+                    if(this.modeLogin){
+                        api.post('http://127.0.0.1:8000/api/login',{
+                            'email': this.login.email,
+                            'password': this.login.password
 
-                    api.post('http://127.0.0.1:8000/api/login',{
-                        'email': this.email,
-                        'password': this.password
+                        }).then(response =>{
+                            this.login.email = '';
+                            this.login.password = '';
 
-                    }).then(response =>{
-                        this.email = '';
-                        this.password = '';
+                            console.log(response.data);
 
-                        window.localStorage.setItem('token',response.data['access_token']);
+                            window.localStorage.setItem('token',response.data['access_token']);
+                            window.localStorage.setItem('role', response.data['role']);
 
-                        this.$store.state.loginModel = false;
+                            this.$store.state.loginModel = false;
 
-                        this.$router.push({
-                            name: 'profile'
+                            this.$router.push({ name: 'profile' });
                         });
-                    });
+                    } else {
+                        if(this.register.password === this.register.confirmPass){
+                            api.post('http://127.0.0.1:8000/api/reg',{
+                                'email' : this.register.email,
+                                'password' : this.register.password,
+                                'password_confirmation' : this.register.confirmPass
+                            }).then(response =>{
+                                this.register.email = '';
+                                this.register.password = '';
+                                this.register.confirmPass = '';
 
+                                console.log(response.data);
+
+                                window.localStorage.setItem('token',response.data['access_token']);
+                                window.localStorage.setItem('role', response.data['role']);
+
+                                this.$store.state.loginModel = false;
+
+                                this.$router.push({ name: 'profile' });
+                            });
+                        }
+                    }
                 });
             }
         }
