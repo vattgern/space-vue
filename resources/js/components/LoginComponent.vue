@@ -53,7 +53,7 @@
                                 placeholder="Confirm password">
                     </label>
                     <button @click.prevent="formData" class="login__btn">
-                        {{ this.modeLogin ? 'LOGIN' : 'REGISTRER' }}
+                        {{ this.modeLogin ? 'LOGIN' : 'REGISTER' }}
                     </button>
                     <p class="changeModeLogin" v-on:click="changeMode">
                         {{ this.modeLogin ? 'No account?' : 'Have account?' }}
@@ -234,8 +234,8 @@ import api from '../api';
 .login__btn{
     cursor: pointer;
     margin-top: 5%;
-    height: 15%;
-    width: 25%;
+    padding: 2.5% 0;
+    width: 200px;
 
     background: transparent;
     border-top: 2px white solid;
@@ -243,7 +243,7 @@ import api from '../api';
 
     color: white;
     font-size: 18px;
-    letter-spacing: 1rem;
+    letter-spacing: 0.75rem;
     transition: all 0.4s ease-in;
 }
 .login__btn:hover{

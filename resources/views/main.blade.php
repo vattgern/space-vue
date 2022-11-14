@@ -18,9 +18,6 @@
         rel="stylesheet"
         />
         @vite('resources/css/app.css')
-        {{-- стили для карусели --}}
-        {{-- <script src="../js/owl.carousel.min.js"></script>
-        <script src="../js/config.carousel.js"></script> --}}
     </head>
     <style>
         body {

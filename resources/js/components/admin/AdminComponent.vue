@@ -5,33 +5,30 @@
                 <img :src="'./images/icons/Logo.svg'" alt="">
             </div>
             <ul class="sidebar-links">
-                <li>
-                    letters
-                </li>
-                <li>users</li>
+                <li v-on:click="show = 'letter'">letters</li>
+                <li v-on:click="show = 'user'">users</li>
                 <li v-on:click="logout">logout</li>
             </ul>
         </div>
         <div class="admin-view">
-
-            <!-- <AdminUsersComponent></AdminUsersComponent> -->
-            <AdminLettersComponent></AdminLettersComponent>
+            <LettersComponent v-show="show === 'letter'"></LettersComponent>
+            <UsersComponent v-show="show === 'user'"></UsersComponent>
         </div>
     </section>
 </template>
 <script>
-import AdminUsersComponent from './AdminUsersComponent.vue';
-import AdminLettersComponent from './AdminLettersComponent.vue';
+import UsersComponent from './UsersComponent.vue';
+import LettersComponent from './LettersComponent.vue';
 import api from '../../api';
     export default {
         data(){
             return{
-
+                show: 'user'
             }
         },
         components:{
-            AdminUsersComponent,
-            AdminLettersComponent
+            UsersComponent,
+            LettersComponent
         },
         methods:{
             logout(){
@@ -85,5 +82,5 @@ import api from '../../api';
     .sidebar-links li{
         cursor: pointer;
     }
-    
+
 </style>

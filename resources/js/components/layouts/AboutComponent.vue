@@ -157,8 +157,8 @@
     gap: 1rem;
 }
 .us__img{
-    width: 30%;
-    height: 75%;
+    width: 35%;
+    height: 70%;
     border-radius: 50%;
     background-color: white;
 }
