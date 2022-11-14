@@ -92,46 +92,56 @@ import api from '../api';
                     this.modeLogin = true;
                 }
             },
+            roleCheck(){
+                axios.get('/sanctum/csrf-cookie').then(r => {
+                    api.get('http://127.0.0.1:8000/api/me').then(response =>{
+                        window.localStorage.setItem('role', response.data['role']);
+
+                        this.$store.state.loginModel = false;
+
+                        if(window.localStorage.getItem('role') == 'admin'){
+                            this.$router.push({ name: 'admin' });
+                        } else {
+                            this.$router.push({ name: 'profile' });
+                        }
+                    });
+                });
+            },
+            loginSend(){
+                api.post('http://127.0.0.1:8000/api/login',{
+                    'email': this.login.email,
+                    'password': this.login.password
+                }).then(response =>{
+                    this.login.email = '';
+                    this.login.password = '';
+
+                    window.localStorage.setItem('token',response.data['access_token']);
+                    this.roleCheck();
+                });
+            },
+            registerSend(){
+                api.post('http://127.0.0.1:8000/api/reg',{
+                    'email' : this.register.email,
+                    'password' : this.register.password,
+                    'password_confirmation' : this.register.confirmPass
+                }).then(response =>{
+                    this.register.email = '';
+                    this.register.password = '';
+                    this.register.confirmPass = '';
+
+                    window.localStorage.setItem('token',response.data['access_token']);
+                    this.roleCheck();
+                });
+            },
             formData(){
                 axios.get('/sanctum/csrf-cookie').then(response => {
+
                     if(this.modeLogin){
-                        api.post('http://127.0.0.1:8000/api/login',{
-                            'email': this.login.email,
-                            'password': this.login.password
-
-                        }).then(response =>{
-                            this.login.email = '';
-                            this.login.password = '';
-
-                            console.log(response.data);
-
-                            window.localStorage.setItem('token',response.data['access_token']);
-                            window.localStorage.setItem('role', response.data['role']);
-
-                            this.$store.state.loginModel = false;
-
-                            this.$router.push({ name: 'profile' });
-                        });
+                    // Если пользователь авторизуется
+                        this.loginSend();
                     } else {
                         if(this.register.password === this.register.confirmPass){
-                            api.post('http://127.0.0.1:8000/api/reg',{
-                                'email' : this.register.email,
-                                'password' : this.register.password,
-                                'password_confirmation' : this.register.confirmPass
-                            }).then(response =>{
-                                this.register.email = '';
-                                this.register.password = '';
-                                this.register.confirmPass = '';
-
-                                console.log(response.data);
-
-                                window.localStorage.setItem('token',response.data['access_token']);
-                                window.localStorage.setItem('role', response.data['role']);
-
-                                this.$store.state.loginModel = false;
-
-                                this.$router.push({ name: 'profile' });
-                            });
+                            this.registerSend();
                         }
                     }
                 });

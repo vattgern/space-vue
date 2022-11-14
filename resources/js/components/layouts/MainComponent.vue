@@ -1,5 +1,5 @@
 <template>
-    <HeaderComponent></HeaderComponent>
+    <HeaderComponent v-show="!adminShow"></HeaderComponent>
     <main>
         <router-view></router-view>
     </main>
@@ -21,7 +21,12 @@
         },
         data(){
             return{
-
+                adminShow: false
+            }
+        },
+        watch:{
+            '$route'(){
+                this.$data.adminShow = this.adminCheck();
             }
         },
         components:{
@@ -31,6 +36,9 @@
         methods:{
             closeModel(){
                 this.$store.state.loginModel = false;
+            },
+            adminCheck(){
+                return localStorage.getItem('role') === 'admin' ? true : false;
             }
         }
     }

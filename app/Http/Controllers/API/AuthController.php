@@ -32,7 +32,6 @@ class AuthController extends Controller
         // Отправка ответа JSON
         return response()->json([
             'access_token' => $token,
-            'role' => 'user',
             'token_type' => 'Bearer',
             'code' => 200,
         ]);
@@ -57,7 +56,6 @@ class AuthController extends Controller
         // -----------------------
         return response()->json([
             'code' => 200,
-            'role' => 'user',
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);

@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\API\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::middleware('auth:sanctum')->group(function () {
 // Авторизация&Регистрация
 Route::post('/reg', [AuthController::class,'registration']);
 Route::post('/login',[AuthController::class,'login'])->name('login');
+
+Route::get('/users',[UserController::class,'all']);
+Route::delete('/users/{id}',[UserController::class,'destroy']);
