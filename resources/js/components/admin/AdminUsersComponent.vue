@@ -1,10 +1,15 @@
 <template>
-    <div class="admin-users-main">
-        <div class="user-block" v-for="user in users">
-            <div class="user-block-name">
-                <p> {{ user.email }} </p>
+    <div class="admin-users">
+        <div class="admin-users-header">
+            <h2>users</h2>
+        </div>
+        <div class="admin-users-main">
+            <div class="user-block" v-for="user in users">
+                <div class="user-block-name">
+                    <p> {{ user.email }} </p>
+                </div>
+                <button>DELETE</button>
             </div>
-            <button>DELETE</button>
         </div>
     </div>
 </template>
@@ -34,6 +39,17 @@ import api from '../../api';
 </script>
 
 <style scoped>
+    .admin-users-header{
+        width: 100%;
+        height: 25%;
+    }
+    .admin-users-header h2{
+        text-transform: uppercase;
+        font-family: sans-serif;
+        font-size: 2vw;
+        margin: 2.5% 7%;
+        letter-spacing: 0.15vw;
+    }
     .admin-users-main{
         width: 75vw;
         height: 100vh;

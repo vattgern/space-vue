@@ -13,17 +13,15 @@
             </ul>
         </div>
         <div class="admin-view">
-            <div class="admin-users">
-                <div class="admin-users-header">
-                    <h2>users</h2>
-                </div>
-                <AdminUsersComponent></AdminUsersComponent>
-            </div>
+
+            <!-- <AdminUsersComponent></AdminUsersComponent> -->
+            <AdminLettersComponent></AdminLettersComponent>
         </div>
     </section>
 </template>
 <script>
 import AdminUsersComponent from './AdminUsersComponent.vue';
+import AdminLettersComponent from './AdminLettersComponent.vue';
 import api from '../../api';
     export default {
         data(){
@@ -32,7 +30,8 @@ import api from '../../api';
             }
         },
         components:{
-            AdminUsersComponent
+            AdminUsersComponent,
+            AdminLettersComponent
         },
         methods:{
             logout(){
@@ -86,15 +85,5 @@ import api from '../../api';
     .sidebar-links li{
         cursor: pointer;
     }
-    .admin-users-header{
-        width: 100%;
-        height: 25%;
-    }
-    .admin-users-header h2{
-        text-transform: uppercase;
-        font-family: sans-serif;
-        font-size: 2vw;
-        margin: 2.5% 7%;
-        letter-spacing: 0.15vw;
-    }
+    
 </style>
