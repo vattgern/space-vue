@@ -24,7 +24,6 @@ import api from '../../api';
         },
         mounted(){
             this.loadUsers();
-            console.log(this.users);
         },
         methods:{
             loadUsers(){

@@ -93,7 +93,7 @@ import api from '../api';
                 }
             },
             roleCheck(){
-                axios.get('/sanctum/csrf-cookie').then(r => {
+                api.get('/sanctum/csrf-cookie').then(r => {
                     api.get('http://127.0.0.1:8000/api/me').then(response =>{
                         window.localStorage.setItem('role', response.data['role']);
 
