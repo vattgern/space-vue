@@ -9,7 +9,8 @@
           <ul>
             <router-link :to="{name: 'about'}">about</router-link>
             <router-link :to="{name: 'main'}">planets</router-link>
-            <router-link :to="{name: 'main'}">letter to space</router-link>
+            <a
+            v-on:click="this.$store.state.letter = true">letter to space</a>
             <router-link :to="{name: 'profile'}" v-show="profile">profile</router-link>
           </ul>
         </nav>
@@ -17,7 +18,7 @@
           <ul>
             <router-link :to="{name: 'about'}">about</router-link>
             <router-link :to="{name: 'main'}">planets</router-link>
-            <router-link :to="{name: 'main'}">letter to space</router-link>
+            <p v-on:click="this.$store.state.letter = true">letter to space</p>
             <a v-show="burgerMenu"
                         v-on:click="showLogin">
                 login

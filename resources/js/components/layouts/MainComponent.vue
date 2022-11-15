@@ -9,12 +9,13 @@
     <Transition name="shadowModal">
         <div class="modal-shadow" v-if="this.$store.state.loginModel" v-on:click="closeModel"></div>
     </Transition>
+    <LetterToSpaceComponent v-if="this.$store.state.letter"></LetterToSpaceComponent>
 </template>
 
 <script>
     import HeaderComponent from '../HeaderComponent.vue';
     import LoginComponent from '../LoginComponent.vue';
-
+    import LetterToSpaceComponent from '../LetterToSpaceComponent.vue';
     export default {
         mounted() {
 
@@ -31,7 +32,8 @@
         },
         components:{
             HeaderComponent,
-            LoginComponent
+            LoginComponent,
+            LetterToSpaceComponent
         },
         methods:{
             closeModel(){

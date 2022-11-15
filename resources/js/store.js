@@ -6,6 +6,7 @@ export default createStore({
         return {
             loginModel: false,
             auth: false,
+            letter: false
         }
     },
     mutations:{
