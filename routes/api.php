@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\LetterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
@@ -20,9 +21,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout',[AuthController::class,'logout']);
 });
 
-// Авторизация&Регистрация
+// Auth
 Route::post('/reg', [AuthController::class,'registration']);
 Route::post('/login',[AuthController::class,'login'])->name('login');
-
+// Users routes
 Route::get('/users',[UserController::class,'all']);
 Route::delete('/users/{id}',[UserController::class,'destroy']);
+// Letters
+Route::get('/letters',[LetterController::class,'all']);
+Route::get('/letters/{id}',[LetterController::class,'index']);
+Route::post('/letter',[LetterController::class,'store']);
+Route::delete('/letters/{id}',[LetterController::class,'destroy']);

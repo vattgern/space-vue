@@ -9,4 +9,8 @@ class Letter extends Model
 {
     use HasFactory;
     protected $guarded = false;
+    protected $hidden = [
+        'created_at',
+        'updated_at'
+    ];
 }
