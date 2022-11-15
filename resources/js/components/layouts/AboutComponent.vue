@@ -19,11 +19,11 @@
         </div>
         <div class="about__us">
             <div class="us__slider">
-                <img class="slider__left" :src="'./images/icons/Left.svg'" v-on:click="sliderLeft">
+                <img class="slider__left" :src="'./images/icons/Left.svg'" v-on:click="sliderLeft" alt="">
                 <div class="us__img">
                     <img :src="this.developers[this.sliderIndex].img" alt="">
                 </div>
-                <img class="slider__right" :src="'./images/icons/Right.svg'" v-on:click="sliderRight">
+                <img class="slider__right" :src="'./images/icons/Right.svg'" v-on:click="sliderRight" alt="">
             </div>
             <div class="us__info">
                 <h2>
@@ -98,50 +98,46 @@
 <style scoped>
 .about__block{
     width: 100vw;
-    height: 87.5vh;
-
     display: flex;
     flex-direction: row;
 }
 .about__info{
     width: 53vw;
     height: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .info__header{
-    height: 25%;
     width: 100%;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 15vh;
+    position: relative;
 }
 .info__header h1{
-    margin-left: 5%;
-
+    text-align: center;
     font-family: 'Lateef', serif;
     font-weight: 200;
     color: white;
-    font-size: 7.5vw;
+    font-size: 6vw;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .info__text{
-    height: 75%;
     width: 100%;
 }
 .info__text p{
-    margin: 2.5% 25%;
-    line-height: 2.75vh;
+    margin: 2.5% 20%;
+    line-height: 2vw;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgba(255, 255, 255, 0.7);
+    font-size: 1.25vw;
 }
 .about__us{
-    height: 100%;
     width: 47vw;
     color: white;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -157,8 +153,8 @@
     gap: 1rem;
 }
 .us__img{
-    width: 35%;
-    height: 70%;
+    width: 15vw;
+    height: 15vw;
     border-radius: 50%;
     background-color: white;
 }
@@ -204,37 +200,161 @@
     flex-direction: row;
     gap: 1.25rem;
 }
-@media screen and (max-width: 425px){
+@media screen and (max-width: 1367px) and (min-width: 1024px) and (orientation: landscape){
+    .info__header{
+        height: 15vh;
+    }
+    .info__text p{
+        font-size: 1.75vw;
+        line-height: 2.75vw;
+    }
+    .us__img{
+        width: 25vw;
+        height: 25vw;
+    }
+    .us__info p{
+        font-size: 2vw;
+        margin: 5%;
+    }
+}
+@media screen and (max-width: 1367px) and (min-width: 1024px) and (orientation: portrait){
     .about__block{
+        width: 100vw;
+        display: flex;
         flex-direction: column-reverse;
     }
     .about__us{
         width: 100%;
-        height: 50vh;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .us__slider{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    .us__img{
+        width: 25vw;
+        height: 25vw;
     }
     .about__info{
         width: 100%;
-        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .us__img{
-        width: 35%;
-        height: 75%;
-    }
-    .us__info p{
-        font-size: 1.35rem;
+    .info__header h1{
+        font-size: 9vw;
     }
     .info__text p{
-        margin: 0 2.5%;
+        font-size: 3vw;
+        line-height: 4.75vw;
         text-align: center;
     }
 }
-@media screen and (max-width:375px){
+@media screen and (max-width: 1023px) and (min-width: 768px) and (orientation: portrait){
+    .about__block{
+        width: 100vw;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .about__us{
+        width: 100%;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .us__slider{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
     .us__img{
-        width: 46%;
-        height: 75%;
+        width: 25vw;
+        height: 25vw;
+    }
+    .about__info{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .info__header h1{
+        font-size: 9vw;
     }
     .info__text p{
-        font-size: 14px;
+        font-size: 3vw;
+        line-height: 4.75vw;
+        position: relative;
+        top: -7.5vw;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 767px) and (orientation: portrait){
+    .about__block{
+        width: 100vw;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .about__us{
+        width: 100%;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .us__slider{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+    .us__img{
+        width: 40vw;
+        height: 40vw;
+    }
+    .about__info{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .info__header h1{
+        font-size: 9vw;
+    }
+    .info__text p{
+        font-size: 3.75vw;
+        line-height: 4.75vw;
+        position: relative;
+        top: -15vw;
+        text-align: center;
+    }
+}
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    .info__header h1{
+        font-size: 6vw;
+        position: relative;
+        top: -5vw;
+    }
+    .info__text p{
+        font-size: 1.75vw;
+        line-height: 2.75vw;
+    }
+    .us__img{
+        width: 25vw;
+        height: 25vw;
+    }
+    .us__info p{
+        font-size: 2vw;
+        margin: 5%;
     }
 }
 </style>

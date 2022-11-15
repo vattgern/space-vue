@@ -60,7 +60,7 @@
         },
         methods:{
             showModel(){
-                if(window.outerWidth < 426){
+                if(window.outerWidth < 674){
                     this.burgerMenu = true;
                 } else{
                     this.$store.state.loginModel = true;
@@ -88,10 +88,10 @@
 
 <style scoped>
     header {
+        height: 75px;
+        margin: 50px 0;
         display: flex;
         align-items: center;
-        height: 75px;
-        margin-top: 50px;
     }
     .header_logo {
         width: 25%;
@@ -99,14 +99,14 @@
         justify-content: center;
     }
     .header_nav {
-        display: flex;
         width: 55%;
+        display: flex;
         justify-content: flex-end;
     }
     .header_nav ul {
+        width: 60%;
         display: flex;
         justify-content: space-between;
-        width: 60%;
     }
     .header_nav ul a {
         text-decoration: none;
@@ -135,7 +135,13 @@
     .nav_moblie{
         display: none;
     }
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 1024px) and (min-width: 675px){
+        .header_nav ul{
+            width: 100%;
+        }
+
+    }
+    @media screen and (max-width: 674px) {
         header{
             justify-content: space-between;
         }

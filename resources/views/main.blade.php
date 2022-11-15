@@ -26,7 +26,7 @@
             display: flex;
             background-color: #000000;
             flex-direction: column;
-            overflow: hidden;
+            overflow-x: hidden;
         }
     </style>
     <body id="app">
