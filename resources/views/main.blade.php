@@ -20,13 +20,20 @@
         @vite('resources/css/app.css')
     </head>
     <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html,body{
+            overflow-x: hidden;
+        }
         body {
             width: 100vw;
             height: 100vh;
             display: flex;
             background-color: #000000;
             flex-direction: column;
-            overflow-x: hidden;
         }
     </style>
     <body id="app">

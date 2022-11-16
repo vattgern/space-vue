@@ -89,9 +89,13 @@
 <style scoped>
     header {
         height: 75px;
-        margin: 50px 0;
+        padding: 50px 0;
         display: flex;
         align-items: center;
+        background: transparent;
+    }
+    header *{
+        background: transparent;
     }
     .header_logo {
         width: 25%;
@@ -144,6 +148,7 @@
     @media screen and (max-width: 674px) {
         header{
             justify-content: space-between;
+            background: transparent;
         }
         .header_logo img{
             height: 100%;
@@ -159,7 +164,7 @@
             left: 0;
             width: 100%;
             padding: 2.5%;
-            background-color: #000;
+            background-color: black;
             z-index: 5;
 
             display: flex;

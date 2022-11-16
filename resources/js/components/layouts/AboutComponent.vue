@@ -326,6 +326,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: 10vw;
     }
     .info__header h1{
         font-size: 9vw;
@@ -341,8 +342,6 @@
 @media screen and (max-width: 900px) and (orientation: landscape) {
     .info__header h1{
         font-size: 6vw;
-        position: relative;
-        top: -5vw;
     }
     .info__text p{
         font-size: 1.75vw;
