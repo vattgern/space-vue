@@ -13,6 +13,11 @@ import MainComponent from "./components/layouts/MainComponent.vue";
 //     } else next()
 // })
 
+// --------------------------------------------------------
+// Пытаюсь подключить JQUERY
+// import JQUERY from 'jquery';
+// --------------------------------------------------------
+
 createApp(MainComponent)
     .use(router)
     .use(store)

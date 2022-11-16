@@ -1,93 +1,59 @@
 <template>
     <div class="planets">
-        <div class="planets_cards owl-carousel">
-              <div class="planets_cards__item item">
+        <div class="planets_cards" v-on:drag="slider">
+            <div class="planets_cards__item item">
                 <h1>Neptune</h1>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
                 </p>
-              </div>
-              <div class="planets_cards__item item">
+            </div>
+            <div class="planets_cards__item item">
                 <h1>Neptune</h1>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
                 </p>
-              </div>
-              <div class="planets_cards__item item">
+            </div>
+            <div class="planets_cards__item item">
                 <h1>Neptune</h1>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
                 </p>
-              </div>
-              <div class="planets_cards__item item">
+            </div>
+            <div class="planets_cards__item item">
                 <h1>Neptune</h1>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                    nisi ut aliquip ex ea commodo consequat.
                 </p>
-              </div>
-              <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-              <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-              <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-              <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
-              <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                  nisi ut aliquip ex ea commodo consequat.
-                </p>
-              </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
+    import { Swiper, SwiperSlide } from 'swiper/vue';
+    import 'swiper/css';
     export default {
-        
+        data(){
+            return {
+
+            }
+        },
+        methods:{
+            slider(){
+                console.log('апдрвыалоп');
+            }
+        }
     }
 </script>
 
@@ -110,6 +76,7 @@
     border-radius: 50px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
+    margin-left: 5%;
 }
 .planets_cards__item > h1 {
   font-family: "Lateef",sans-serif;

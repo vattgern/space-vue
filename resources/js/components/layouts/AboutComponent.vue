@@ -121,7 +121,7 @@
     font-size: 6vw;
 
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
@@ -330,6 +330,7 @@
     }
     .info__header h1{
         font-size: 9vw;
+        top: 15%;
     }
     .info__text p{
         font-size: 3.75vw;

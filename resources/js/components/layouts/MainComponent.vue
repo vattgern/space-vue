@@ -47,6 +47,9 @@
 </script>
 
 <style scoped>
+    main{
+        overflow-x: hidden;
+    }
     .shadowModal-enter-active,
     .shadowModal-leave-active{
         transition: all 0.4s ease-in;
