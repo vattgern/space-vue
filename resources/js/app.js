@@ -2,7 +2,7 @@ import './bootstrap';
 import { createApp } from 'vue';
 import store from './store';
 import router from './router';
-import MainComponent from "./components/layouts/MainComponent.vue";
+import MainComponent from "./components/MainComponent.vue";
 
 
 // Если пользователь не админ его переносит на главную

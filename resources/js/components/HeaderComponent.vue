@@ -113,6 +113,7 @@
         justify-content: space-between;
     }
     .header_nav ul a {
+        cursor: pointer;
         text-decoration: none;
         font-family: "Jost", sans-serif;
         font-style: normal;

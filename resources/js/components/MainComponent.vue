@@ -13,9 +13,9 @@
 </template>
 
 <script>
-    import HeaderComponent from '../HeaderComponent.vue';
-    import LoginComponent from '../LoginComponent.vue';
-    import LetterToSpaceComponent from '../LetterToSpaceComponent.vue';
+    import HeaderComponent from './HeaderComponent.vue';
+    import LoginComponent from './LoginComponent.vue';
+    import LetterToSpaceComponent from './LetterToSpaceComponent.vue';
     export default {
         mounted() {
 
