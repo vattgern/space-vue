@@ -14,44 +14,44 @@
             </div>
             <div class="modal__body">
                 <form class="modal__form">
-                    <label for="#email" v-show="modeLogin">
+                    <div v-show="modeLogin">
                         <input type="email"
                                 name="email"
                                 id="email"
                                 v-model="this.login.email"
                                 placeholder="E-mail">
-                    </label>
+                    </div>
 
-                    <label for="#email" v-show="!modeLogin">
+                    <div v-show="!modeLogin">
                         <input type="email"
                                 name="email"
                                 id="email"
                                 v-model="this.register.email"
                                 placeholder="E-mail">
-                    </label>
+                    </div>
 
-                    <label for="#password" v-show="modeLogin">
+                    <div v-show="modeLogin">
                         <input type="password"
                                 name="password"
                                 id="password"
                                 v-model="this.login.password"
                                 placeholder="Password">
-                    </label>
+                    </div>
 
-                    <label for="#password" v-show="!modeLogin">
+                    <div v-show="!modeLogin">
                         <input type="password"
                                 name="password"
                                 id="password"
                                 v-model="this.register.password"
                                 placeholder="Password">
-                    </label>
-                    <label for="#password" v-show="!modeLogin">
+                    </div>
+                    <div v-show="!modeLogin">
                         <input type="password"
                                 name="password"
                                 id="password"
                                 v-model="this.register.confirmPass"
                                 placeholder="Confirm password">
-                    </label>
+                    </div>
                     <button @click.prevent="formData" class="login__btn">
                         {{ this.modeLogin ? 'LOGIN' : 'REGISTER' }}
                     </button>
@@ -160,10 +160,9 @@ import api from '../api';
     width: 70vw;
     height: 80vh;
 
-    background-image: url("./images/backgrounds/stars.png");
-    background-position: center;
-    background-repeat: no-repeat;
+    /*background-image: url("./images/backgrounds/stars.png");*/
     background-size: cover;
+    background: black no-repeat center;
 
     display: flex;
     flex-direction: column;
@@ -227,7 +226,7 @@ import api from '../api';
     color: rgba(255, 255, 255, 0.66);
     letter-spacing: 0.25rem;
 }
-.modal__form label{
+.modal__form div{
     width: 100%;
     margin: 5% 0;
 }
@@ -278,12 +277,10 @@ import api from '../api';
         height: 50%;
     }
     .login__btn{
-        height: 20%;
-        width: 35%;
-        letter-spacing: 0.5rem;
         border: none;
-        background: white;
-        color: black;
+        background: transparent;
+        border-top: 2px white solid;
+        border-bottom: 2px white solid;
     }
 }
 </style>

@@ -50,7 +50,6 @@
     transform: translate(-50%,-50%);
     z-index: 99;
     background-color: rgba(0, 0, 0, 0.97);
-    background-image: url('');
     width: 85%;
     height: 90%;
 }
@@ -61,7 +60,7 @@
     margin: 0 7.5vw;
 
     font-size: 1.8vw;
-    font-family: "Jost";
+    font-family: "Jost", sans-serif;
     color: white;
 }
 .letterHeaderClose {
@@ -77,7 +76,7 @@
     border: none;
     border-bottom: solid 0.1vw white;
 
-    font-family: "Jost";
+    font-family: "Jost", sans-serif;
     letter-spacing: 0.15vw;
     background: none;
     font-size: 0.9vw;
@@ -97,7 +96,7 @@
     width: 35vw;
     height: 15vw;
 
-    font-family: "Jost";
+    font-family: "Jost", sans-serif;
     letter-spacing: 0.15vw;
 
     outline: none;
@@ -181,4 +180,109 @@ textarea {
         transform: rotateX(25deg) translateY(0vh);
     }
 }
+/* ------------------------------------------------------- */
+@media screen and (max-width: 1366px) and (min-width: 1025px){
+    .letterHeader{
+        margin: 2.5vw 7vw;
+    }
+    .letterEmail{
+        width: 40vw;
+        height: 5vh;
+    }
+    .letter_input{
+        width: 100%;
+        height: 100%;
+        font-size: 1.25vw;
+    }
+    .letterText{
+        width: 40vw;
+        height: 40vh;
+    }
+    .text{
+        width: 100%;
+        height: 100%;
+        font-size: 1.25vw;
+    }
+    .letterSubmit{
+        margin: 2.5vw 7.5vw;
+    }
+}
+@media screen and (max-width: 1024px) and (min-width: 768px){
+    .letterToSpace{
+        width: 100%;
+        height: 100%;
+    }
+    .backText{
+        display: none;
+    }
+    .letterHeader{
+        margin: 2.5vw 7vw;
+    }
+    .letterEmail{
+        width: 85%;
+        height: 7.5vh;
+    }
+    .letter_input{
+        width: 100%;
+        height: 100%;
+        font-size: 2.5vw;
+    }
+    .letterText{
+        width: 85%;
+        height: 50vh;
+    }
+    .text{
+        width: 100%;
+        height: 100%;
+        font-size: 2.5vw;
+    }
+    .letterSubmit{
+        margin: 2.5vw 7.5vw;
+    }
+    .submit_button{
+        width: 30vw;
+        height: 7.5vw;
+        font-size: 2.75vw;
+    }
+}
+@media screen and (max-width: 767px){
+    .letterToSpace{
+        width: 100%;
+        height: 100%;
+    }
+    .backText{
+        display: none;
+    }
+    .letterHeader{
+        margin: 2.5vw 7vw;
+        font-size: 2.5vw;
+    }
+    .letterEmail{
+        width: 85%;
+        height: 7.5vh;
+    }
+    .letter_input{
+        width: 100%;
+        height: 100%;
+        font-size: 4vw;
+    }
+    .letterText{
+        width: 85%;
+        height: 50vh;
+    }
+    .text{
+        width: 100%;
+        height: 100%;
+        font-size: 4vw;
+    }
+    .letterSubmit{
+        margin: 5vw 7.5vw;
+    }
+    .submit_button{
+        width: 85vw;
+        height: 12.5vw;
+        font-size: 4vw;
+    }
+}
+/* ------------------------------------------------------- */
 </style>

@@ -18,7 +18,8 @@
           <ul>
             <router-link :to="{name: 'about'}">about</router-link>
             <router-link :to="{name: 'main'}">planets</router-link>
-            <p v-on:click="this.$store.state.letter = true">letter to space</p>
+              <a
+                  v-on:click="this.$store.state.letter = true">letter to space</a>
             <a v-show="burgerMenu"
                         v-on:click="showLogin">
                 login
