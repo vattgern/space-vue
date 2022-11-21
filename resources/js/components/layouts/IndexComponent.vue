@@ -1,33 +1,17 @@
 <template>
     <div class="planets">
         <div class="planets_cards">
-            <div class="planets_cards__item item first">
-                <h1>Neptune</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </div>
-            <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </div>
-            <div class="planets_cards__item item">
-                <h1>Neptune</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                    nisi ut aliquip ex ea commodo consequat.
-                </p>
-            </div>
+            <router-link :to="{ name: 'planet' }">
+                <div class="planets_cards__item item first">
+                    <h1>Neptune</h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+            </router-link>
             <div class="planets_area_left" v-on:mousemove="left"></div>
             <div class="planets_area_right" v-on:mousemove="right"></div>
         </div>
@@ -67,6 +51,9 @@
     display: flex;
     justify-content: center;
     position: relative;
+}
+.planets_cards a{
+    text-decoration: none;
 }
 .planets_area_left,
 .planets_area_right{

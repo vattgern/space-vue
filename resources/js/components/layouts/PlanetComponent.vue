@@ -1,7 +1,7 @@
 <template>
     <div class="planet">
         <div class="planet_block">
-            <div class="sideNavigation" @click="planetCountChange">
+            <div class="sideNavigation" v-on:click="planetCountChange">
                 <div class="lines">
                     <div class="line"></div>
                     <div class="line"></div>
@@ -30,12 +30,15 @@
                 <img :src="'./images/icons/plus.svg'" alt="">
             </div>
         </div>
-        <div class="planet_block">
-            <img :src="'./images/icons/Planet_01.svg'" alt="qwerty'">
+        <div class="planet_block planet_view">
+            <!-- <img :src="'./images/icons/Planet_01.svg'" alt="qwerty"> -->
         </div>
     </div>
 </template>
 <script>
+import * as THREE from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 export default {
     name: "PlanetComponent",
     data(){
@@ -105,8 +108,49 @@ export default {
             ]
         }
     },
+    mounted(){
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+
+        const container = document.querySelector('.planet_view');
+
+		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+
+		const renderer = new THREE.WebGLRenderer();
+		renderer.setSize( window.innerWidth / 1.89, window.innerHeight / 1.18 );
+		document.querySelector('.planet_view').appendChild( renderer.domElement );
+		camera.position.z = 2;
+        // --------------------------------------------------
+        const light = new THREE.AmbientLight(0xffffff);
+        scene.add(light);
+        // --------------------------------------------------
+        // --------------------------------------------------
+        let controls = new OrbitControls(camera, renderer.domElement);
+        controls.addEventListener('change',renderer);
+        controls
+        camera.position.set(0,40,100);
+        // --------------------------------------------------
+        // --------------------------------------------------
+        const loader = new GLTFLoader();
+        loader.load('./models/mars/scene.gltf', (gltf) => {
+            let planet = gltf.scene.children[0];
+            console.log(planet);
+            planet.scale.y = 100;
+            planet.scale.x = 100;
+            planet.scale.z = 100;
+            scene.add(gltf.scene);
+        });
+        controls.target.set(0,0,0);
+        // --------------------------------------------------
+		function animate() {
+            requestAnimationFrame( animate );
+			renderer.render( scene, camera );
+		};
+		animate();
+    },
     methods:{
         planetCountChange(){
+            console.log('ghkjfg')
             if(this.planetCount === this.planets.length - 1){
                 this.planetCount = 0;
             } else{
@@ -124,6 +168,11 @@ export default {
     display: flex;
     height: 85vh;
     width: 100vw;
+}
+.planet_view{
+    border: 2px white solid;
+    /* position: relative;
+    z-index: 100; */
 }
 .planet_block {
     display: flex;
@@ -186,12 +235,12 @@ export default {
 
 .planet_block:nth-child(3) {
     width: 60%;
-    justify-content: flex-end;
-    align-items: flex-end;
+    /* justify-content: flex-end;
+    align-items: flex-end; */
 }
-.planet_block:nth-child(3) > img {
+/* .planet_block:nth-child(3) > img {
     width: 90%;
-}
+} */
 /* -------------------------------- */
 /* Цифры сверху */
 .planet_block__p {
