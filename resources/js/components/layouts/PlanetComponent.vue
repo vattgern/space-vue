@@ -111,36 +111,34 @@ export default {
     mounted(){
         const scene = new THREE.Scene();
         scene.background = new THREE.Color(0x000000);
-
         const container = document.querySelector('.planet_view');
-
 		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-
 		const renderer = new THREE.WebGLRenderer();
-		renderer.setSize( window.innerWidth / 1.89, window.innerHeight / 1.18 );
+		renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
 		document.querySelector('.planet_view').appendChild( renderer.domElement );
-		camera.position.z = 2;
+		
         // --------------------------------------------------
-        const light = new THREE.AmbientLight(0xffffff);
+        const light = new THREE.AmbientLight(0xffffff, 0.75);
         scene.add(light);
+        const light2 = new THREE.HemisphereLight(0xffff, 1);
+        scene.add(light2);
         // --------------------------------------------------
         // --------------------------------------------------
         let controls = new OrbitControls(camera, renderer.domElement);
         controls.addEventListener('change',renderer);
-        controls
-        camera.position.set(0,40,100);
+    
+        camera.position.set(1,1,1);
         // --------------------------------------------------
         // --------------------------------------------------
         const loader = new GLTFLoader();
         loader.load('./models/mars/scene.gltf', (gltf) => {
             let planet = gltf.scene.children[0];
-            console.log(planet);
-            planet.scale.y = 100;
-            planet.scale.x = 100;
-            planet.scale.z = 100;
+            let box3 = new THREE.Box3().setFromObject(planet);
+            let center = new THREE.Vector3();
+            box3.getCenter(center);
+            planet.position.sub(center);
             scene.add(gltf.scene);
         });
-        controls.target.set(0,0,0);
         // --------------------------------------------------
 		function animate() {
             requestAnimationFrame( animate );
@@ -170,10 +168,14 @@ export default {
     width: 100vw;
 }
 .planet_view{
-    border: 2px white solid;
-    /* position: relative;
-    z-index: 100; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
+.planet_view canvas{
+    position: absolute;
+}   
 .planet_block {
     display: flex;
 }
