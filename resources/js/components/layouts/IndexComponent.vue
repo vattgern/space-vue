@@ -1,43 +1,17 @@
 <template>
     <div class="planets">
-        <div class="planets_cards">
-            <router-link :to="{ name: 'planet' }">
-                <div class="planets_cards__item item first">
-                    <h1>Neptune</h1>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                        enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                        nisi ut aliquip ex ea commodo consequat.
-                    </p>
-                </div>
-            </router-link>
-            <div class="planets_area_left" v-on:mousemove="left"></div>
-            <div class="planets_area_right" v-on:mousemove="right"></div>
-        </div>
+        <SliderComponent></SliderComponent>
     </div>
 </template>
 <script>
+import SliderComponent from '../SliderComponent.vue';
+
     export default {
-        data(){
-            return {
-                slideCount: 0,
-            }
-        },
-        methods:{
-            right(){
-                this.slideCount < 0 ? this.slideCount = 0 : this.slideCount++;
-                this.changeSlide();
-            },
-            left(){
-                this.slideCount--;
-                this.changeSlide();
-            },
-            changeSlide(){
-                document.querySelector('.first').style = `margin-left: ${ this.slideCount / 2 }%`;
-            }
-        }
-    }
+    data() {
+        return {};
+    },
+    components: { SliderComponent }
+}
 </script>
 
 <style scoped>
