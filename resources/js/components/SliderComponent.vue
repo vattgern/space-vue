@@ -184,51 +184,49 @@ export default {
         font-family: "Orelo-sw-bi", serif;
         background: #000;
     } */
-    .carousel {
-        width: 100%;
-        cursor: -webkit-grab;
-        cursor: grab;
-    }
-    .carousel.dragging {
-        cursor: -webkit-grabbing;
-        cursor: grabbing;
-    }
-    .carousel--wrap {
-        white-space: nowrap;
-    }
-    .carousel--item {
-
-        display: inline-block;
-        margin: 0 1vw;
-        width: 20vw;
-        height: 80vh;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-    }
-    .carousel--progress {
-        position: fixed;
-        z-index: 2;
-        pointer-events: none;
-        bottom: 2vw;
-        width: 20vw;
-        left: 3vw;
-        height: 1px;
-        background: rgba(255, 255, 255, 0.2);
-    }
-    
-    .carousel--progress-bar {
-        position: absolute;
-        z-index: 1;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.8);
-        transform: scaleX(0);
-        transform-origin: 0% 0%;
-    }
+  .carousel {
+      width: 100%;
+      cursor: -webkit-grab;
+      cursor: grab;
+  }
+  .carousel.dragging {
+      cursor: -webkit-grabbing;
+      cursor: grabbing;
+  }
+  .carousel--wrap {
+      white-space: nowrap;
+  }
+  .carousel--item {
+      display: inline-block;
+      margin: 1vw;
+      width: 20vw;
+      height: 80vh;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+  }
+  .carousel--progress {
+      position: fixed;
+      z-index: 2;
+      pointer-events: none;
+      bottom: 2vw;
+      width: 20vw;
+      left: 3vw;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.2);
+  }
+  .carousel--progress-bar {
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      transform: scaleX(0);
+      transform-origin: 0% 0%;
+  }
   .planets_cards__item {
     width: 100%;
     height: 100%;
@@ -271,9 +269,258 @@ export default {
 
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 
     width: 100%;
     height: 35%;
+  }
+  @media screen and (max-width:1024px) and (min-width: 767px) {
+    .carousel--item {
+    
+        display: inline-block;
+        margin: 5vw 1vw;
+        width: 30vw;
+        height: 75vh;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    
+      .planets_cards__item {
+        width: 100%;
+        height: 100%;
+    
+        background-image: url("../images/icons/Model_planet.svg");
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 100%;
+    
+        box-shadow: 50px 5px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 50px;
+    
+        display: flex;
+        flex-direction: column;
+        white-space: pre-wrap;
+        text-decoration: none;
+      }
+    
+      .planets_cards__item>h1 {
+        width: 100%;
+        height: 60%;
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    
+        font-style: normal;
+        font-weight: 300;
+        font-size: 3em;
+        color: #ffffff;
+        text-transform: capitalize;
+      }
+    
+      .planets_cards__item>p {
+        font-family: "League Spartan";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1.2em;
+        line-height: 23px;
+        letter-spacing: 0.075em;
+        color: rgba(255, 255, 255, 0.7);
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+        width: 100%;
+        height: 35%;
+      }
+  }
+  @media screen and (max-width: 768px) and (min-width: 426px){
+    .carousel--item {
+    
+        display: inline-block;
+        margin: 5vw 1vw;
+        width: 30vw;
+        height: 65vh;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    .planets_cards__item {
+      width: 100%;
+      height: 100%;
+
+      background-image: url("../images/icons/Model_planet.svg");
+      background-repeat: no-repeat;
+      background-position: top right;
+      background-size: 100%;
+
+      box-shadow: 50px 5px 15px rgba(0, 0, 0, 0.25);
+      border-radius: 50px;
+
+      display: flex;
+      flex-direction: column;
+      white-space: pre-wrap;
+      text-decoration: none;
+    }
+    .planets_cards__item>h1 {
+      width: 100%;
+      height: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      font-style: normal;
+      font-weight: 300;
+      font-size: 3em;
+      color: #ffffff;
+      text-transform: capitalize;
+    }
+    .planets_cards__item>p {
+      font-family: "League Spartan";
+      font-style: normal;
+      font-weight: 300;
+      font-size: 1.2em;
+      line-height: 23px;
+      letter-spacing: 0.075em;
+      color: rgba(255, 255, 255, 0.7);
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: center;
+      width: 100%;
+      height: 35%;
+    }
+  }
+  @media screen and (max-width: 425px) and (min-width: 376px){
+    .carousel--item {
+        display: inline-block;
+        margin: 5vw 1vw;
+        width: 80vw;
+        height: 65vh;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+    
+      .planets_cards__item {
+        width: 100%;
+        height: 100%;
+    
+        background-image: url("../images/icons/Model_planet.svg");
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 100%;
+    
+        box-shadow: 50px 5px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 50px;
+    
+        display: flex;
+        flex-direction: column;
+        white-space: pre-wrap;
+        text-decoration: none;
+      }
+    
+      .planets_cards__item>h1 {
+        width: 100%;
+        height: 70%;
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    
+        font-style: normal;
+        font-weight: 300;
+        font-size: 3em;
+        color: #ffffff;
+        text-transform: capitalize;
+      }
+    
+      .planets_cards__item>p {
+        font-family: "League Spartan";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1.2em;
+        line-height: 23px;
+        letter-spacing: 0.075em;
+        color: rgba(255, 255, 255, 0.7);
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+        width: 100%;
+        height: 35%;
+      }
+  }
+  @media screen and (max-width:375px){
+    .carousel--item {
+        display: inline-block;
+        margin: 5vw 1vw;
+        width: 80vw;
+        height: 80vh;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        border: 2px red solid;
+      }
+    
+      .planets_cards__item {
+        width: 100%;
+        height: 100%;
+    
+        background-image: url("../images/icons/Model_planet.svg");
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: 100%;
+    
+        box-shadow: 50px 5px 15px rgba(0, 0, 0, 0.25);
+        border-radius: 50px;
+    
+        display: flex;
+        flex-direction: column;
+        white-space: pre-wrap;
+        text-decoration: none;
+      }
+    
+      .planets_cards__item>h1 {
+        width: 100%;
+        height: 70%;
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    
+        font-style: normal;
+        font-weight: 300;
+        font-size: 3em;
+        color: #ffffff;
+        text-transform: capitalize;
+      }
+    
+      .planets_cards__item>p {
+        font-family: "League Spartan";
+        font-style: normal;
+        font-weight: 300;
+        font-size: 1.2em;
+        line-height: 23px;
+        letter-spacing: 0.075em;
+        color: rgba(255, 255, 255, 0.7);
+    
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+        width: 100%;
+        height: 35%;
+      }
   }
 </style>
