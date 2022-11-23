@@ -161,7 +161,11 @@ export default {
                   camera.position.set(1,1,3);
             }
             if(this.planets[this.planetCount].name !== 'Mars'){
-                  camera.position.set(100,100,100)
+                if(this.planets[this.planetCount].name === 'Saturn' || this.planets[this.planetCount].name === 'Uranus'){
+                    camera.position.set(150,150,150);
+                } else {
+                    camera.position.set(100,100,100)
+                }
             } else {
               camera.position.set(1,1,1);
             }

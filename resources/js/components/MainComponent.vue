@@ -1,5 +1,6 @@
 <template>
     <HeaderComponent v-show="!adminShow"></HeaderComponent>
+    <Notification></Notification>
     <main>
         <router-view></router-view>
     </main>
@@ -16,6 +17,7 @@
     import HeaderComponent from './HeaderComponent.vue';
     import LoginComponent from './LoginComponent.vue';
     import LetterToSpaceComponent from './LetterToSpaceComponent.vue';
+    import Notification from './Notification.vue';
     export default {
         mounted() {
 
@@ -33,7 +35,8 @@
         components:{
             HeaderComponent,
             LoginComponent,
-            LetterToSpaceComponent
+            LetterToSpaceComponent,
+            Notification
         },
         methods:{
             closeModel(){
