@@ -44,6 +44,7 @@ export default {
             planetCount: this.$route.params['id'] - 1,
             planets: [
                 {
+                    url: '/models/mercury/scene.gltf',
                     name: 'Mercury',
                     text: 'Mercury is the first planet from the Sun and the smallest planet in the solar system. ' +
                         'This is one of the most extreme worlds. It received its name in honor of the messenger of the Roman gods. ' +
@@ -52,6 +53,7 @@ export default {
                         'and the planet itself has its own phases.'
                 },
                 {
+                    url: '/models/venus/scene.gltf',
                     name: 'Venus',
                     text: 'Venus is the second planet from the Sun and the hottest planet in the solar system. ' +
                         'For the ancient people, Venus was a constant companion. This is an evening star and the brightest neighbor, ' +
@@ -60,6 +62,7 @@ export default {
                         'With each century, interest increased, and these observations helped to understand the structure of our system.'
                 },
                 {
+                    url: '/models/earth/scene.gltf',
                     name: 'Earth',
                     text: 'Of course we love our planet. And not only because it is a home, but also because ' +
                         'it is a unique place in the solar system and the Universe, because so far we know only life on Earth. ' +
@@ -68,6 +71,7 @@ export default {
                         'each people in the historical plan.'
                 },
                 {
+                    url: '/models/mars/scene.gltf',
                     name: 'Mars',
                     text: 'Maps is the fourth planet from the Sun and the most similar to Earth in the solar system. ' +
                         'We know our neighbor also by the second name - "Red Planet". He received his name in honor of the ' +
@@ -77,6 +81,7 @@ export default {
                         'of fear in front of the planet.'
                 },
                 {
+                    url: '/models/jupiter/scene.gltf',
                     name: 'Jupiter',
                     text: 'Jupiter fascinated observers 400 years ago, when it was possible to see it through the first telescopes. ' +
                         'This is a beautiful gas giant with swirling clouds, a mysterious spot, a family of satellites and many features. ' +
@@ -84,18 +89,21 @@ export default {
                         'Even ancient people knew about its existence, therefore Jupiter was noted in many cultures.'
                 },
                 {
+                    url: '/models/saturn/scene.gltf',
                     name: 'Saturn',
                     text: 'Saturn is the sixth planet from the Sun and possibly the most beautiful object in the solar system. ' +
                         'This is the most distant planet from the star, which can be found from the Earth without using a telescope or binoculars. ' +
                         'So they have known about its existence for a long time. Before you is one of the four gas giants, located 6th in order from the Sun.'
                 },
                 {
+                    url: '/models/uranus/scene.gltf',
                     name: 'Uranus',
                     text: 'Uranus is the seventh planet from the Sun and the third largest planet in the solar system after Jupiter and Saturn. ' +
                         'Has a collection of satellites and a ring system. Although it can be found without the use of magnifying devices, ' +
                         'the planetary status was revealed only in the 18th century.'
                 },
                 {
+                    url: '/models/neptune/scene.gltf',
                     name: 'Neptune',
                     text: 'Neptune is the eighth from the Sun and the most distant planet in the solar system. ' +
                         'This is a gas giant and a representative of the category of solar planets of the outer system. ' +
@@ -103,60 +111,11 @@ export default {
                         'so it was found relatively recently. In a close approach, they observed only once during the ' +
                         'flight of the Boyager-2 apparatus in 1989.'
                 }
-            ]
+            ],
         }
     },
     mounted(){
-        console.log(window.outerWidth);
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        const container = document.querySelector('.planet_view');
-		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-		const renderer = new THREE.WebGLRenderer();
-        if(window.outerWidth < 1024){
-            renderer.setSize( container.clientWidth, container.clientHeight);
-        } else {
-            renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
-        }
-        if(window.outerWidth < 767) {
-            renderer.setSize( container.clientWidth, container.clientHeight);
-        }
-	    document.querySelector('.planet_view').appendChild( renderer.domElement );
-
-      // --------------------------------------------------
-      const light = new THREE.AmbientLight(0xffffff, 0.75);
-      scene.add(light);
-      const light2 = new THREE.HemisphereLight(0xffff, 1);
-      scene.add(light2);
-      // --------------------------------------------------
-      // --------------------------------------------------
-      let controls = new OrbitControls(camera, renderer.domElement);
-      controls.addEventListener('change',renderer);
-
-      camera.position.set(1,1,1);
-      if(window.outerWidth < 1024){
-        camera.position.set(1,1,2);
-      }
-      if(window.outerWidth < 767) {
-            camera.position.set(1,1,3);
-      }
-      // --------------------------------------------------
-      // --------------------------------------------------
-      const loader = new GLTFLoader();
-      loader.load('/models/mars/scene.gltf', (gltf) => {
-          let planet = gltf.scene.children[0];
-          let box3 = new THREE.Box3().setFromObject(planet);
-          let center = new THREE.Vector3();
-          box3.getCenter(center);
-          planet.position.sub(center);
-          scene.add(gltf.scene);
-      });
-      // --------------------------------------------------
-		  function animate() {
-              requestAnimationFrame( animate );
-		  	renderer.render( scene, camera );
-		  };
-		  animate();
+        this.initPlanet();
     },
     methods:{
         planetCountChange(){
@@ -165,6 +124,64 @@ export default {
             } else{
                 this.planetCount++;
             }
+            document.querySelector('.planet_view > canvas').remove();
+            this.initPlanet();
+        },
+        initPlanet(){
+            console.log(this.planets[this.planetCount].url);
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x000000);
+            const container = document.querySelector('.planet_view');
+		    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+		    const renderer = new THREE.WebGLRenderer();
+            if(window.outerWidth < 1024){
+                renderer.setSize( container.clientWidth, container.clientHeight);
+            } else {
+                renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
+            }
+            if(window.outerWidth < 767) {
+                renderer.setSize( container.clientWidth, container.clientHeight);
+            }
+	        document.querySelector('.planet_view').appendChild( renderer.domElement );
+
+            // --------------------------------------------------
+            const light = new THREE.AmbientLight(0xffffff, 0.75);
+            scene.add(light);
+            const light2 = new THREE.HemisphereLight(0xffff, 1);
+            scene.add(light2);
+            // --------------------------------------------------
+            // --------------------------------------------------
+            let controls = new OrbitControls(camera, renderer.domElement);
+            controls.addEventListener('change',renderer);
+
+            if(window.outerWidth < 1024){
+                camera.position.set(1,1,2);
+            }
+            if(window.outerWidth < 767) {
+                  camera.position.set(1,1,3);
+            }
+            if(this.planets[this.planetCount].name !== 'Mars'){
+                  camera.position.set(100,100,100)
+            } else {
+              camera.position.set(1,1,1);
+            }
+            // --------------------------------------------------
+            // --------------------------------------------------
+            const loader = new GLTFLoader();
+            loader.load(this.planets[this.planetCount].url, (gltf) => {
+                let planet = gltf.scene.children[0];
+                let box3 = new THREE.Box3().setFromObject(planet);
+                let center = new THREE.Vector3();
+                box3.getCenter(center);
+                planet.position.sub(center);
+                scene.add(gltf.scene);
+            });
+            // --------------------------------------------------
+	        function animate() {
+              requestAnimationFrame( animate );
+	        	renderer.render( scene, camera );
+	        };
+	    	animate();
         }
     }
 }
