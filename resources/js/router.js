@@ -31,7 +31,7 @@ export default createRouter({
             component: AdminComponent
         },
         {
-            path: '/planet',
+            path: '/planet/:id',
             name: 'planet',
             component: PlanetComponent
         }

@@ -2,7 +2,7 @@
     <header>
         <div class="header_logo">
             <router-link :to="{ name:'main' }">
-                <img :src="'./images/icons/Logo.svg'" alt="qwerty"/>
+                <img :src="'/images/icons/Logo.svg'" alt="qwerty"/>
             </router-link>
         </div>
         <nav class="header_nav">

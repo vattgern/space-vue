@@ -1,34 +1,15 @@
 <template>
     <div class="carousel">
         <div class="carousel--wrap">
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1595265677860-9a3168007dc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>South</h2>
-            </div>
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1594786118579-95ba90c801ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>Troker</h2>
-            </div>
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1509339022327-1e1e25360a41?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>Slant</h2>
-            </div>
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1525417071002-5ee4e6bb44f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>Gravy</h2>
-            </div>
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1594072702031-f0e2a602dd2c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>Amuse</h2>
-            </div>
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1592989819277-a3aafa40c66a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>Truffle</h2>
-            </div>
-            <div class="carousel--item">
-                <figure><img src="https://images.unsplash.com/photo-1548374797-d13fd5d2b2a8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" alt="" /></figure>
-                <h2>Locker</h2>
-            </div>
+          <div class="carousel--item" v-for="(planet, index) of planets">
+            <router-link :to="{ name:'planet', params: { id: index + 1 } }" class="planets_cards__item">
+              <!-- <img :src="'./images/icons/Model_planet.svg'" alt="qwerty" /> -->
+              <h1>{{ planet.name}}</h1>
+              <p>
+                {{ planet.text }}
+              </p>
+            </router-link>
+          </div>
         </div>
         <div class="carousel--progress">
             <div class="carousel--progress-bar"></div>
@@ -39,7 +20,48 @@
 export default {
     data() {
         return {
-            
+          planets: [
+            {
+              name: 'Mercury',
+              text: 'Mercury is the first planet from the Sun and the smallest planet in the solar system. ' +
+                'This is one of the most extreme worlds. It received its name in honor of the messenger of the Roman gods. '
+            },
+            {
+              name: 'Venus',
+              text: 'Venus is the second planet from the Sun and the hottest planet in the solar system. ' +
+                'For the ancient people, Venus was a constant companion.'
+            },
+            {
+              name: 'Earth',
+              text: 'Of course we love our planet. And not only because it is a home, but also because ' +
+                'it is a unique place in the solar system and the Universe, because so far we know only life on Earth.' 
+            },
+            {
+              name: 'Mars',
+              text: 'Maps is the fourth planet from the Sun and the most similar to Earth in the solar system. ' +
+                'We know our neighbor also by the second name - "Red Planet".'
+            },
+            {
+              name: 'Jupiter',
+              text: 'Jupiter fascinated observers 400 years ago, when it was possible to see it through the first telescopes. ' +
+                'This is a beautiful gas giant with swirling clouds, a mysterious spot, a family of satellites and many features. '
+            },
+            {
+              name: 'Saturn',
+              text: 'Saturn is the sixth planet from the Sun and possibly the most beautiful object in the solar system. ' +
+                'This is the most distant planet from the star, which can be found from the Earth without using a telescope or binoculars. '
+            },
+            {
+              name: 'Uranus',
+              text: 'Uranus is the seventh planet from the Sun and the third largest planet in the solar system after Jupiter and Saturn. ' +
+                'Has a collection of satellites and a ring system. Although it can be found without the use of magnifying devices, '
+            },
+            {
+              name: 'Neptune',
+              text: 'Neptune is the eighth from the Sun and the most distant planet in the solar system. ' +
+                'This is a gas giant and a representative of the category of solar planets of the outer system. '
+            }
+          ]
         }
     },
     mounted() {
@@ -74,7 +96,7 @@ export default {
             }
             calculate() {
                 this.progress = 0;
-                this.wrapWidth = this.$items[0].clientWidth * this.$items.length;
+                this.wrapWidth = this.$items[0].clientWidth * (this.$items.length + 1);
                 this.$wrap.style.width = `${this.wrapWidth}px`;
                 this.maxScroll = this.wrapWidth - this.$el.clientWidth;
             }
@@ -128,7 +150,7 @@ export default {
                 this.scale = lerp(this.scale, this.speed, 0.1);
                 this.$items.forEach(i => {
                 i.style.transform = `scale(${1 - Math.abs(this.speed) * 0.002})`;
-                i.querySelector('img').style.transform = `scaleX(${1 + Math.abs(this.speed) * 0.004})`;
+                //i.querySelector('img').style.transform = `scaleX(${1 + Math.abs(this.speed) * 0.004})`;
                 });
             }
         }
@@ -153,7 +175,7 @@ export default {
 }
 </script>
 <style>
-    /* body {
+/* body {
         height: 100vh;
         overflow: hidden;
         display: flex;
@@ -175,40 +197,15 @@ export default {
         white-space: nowrap;
     }
     .carousel--item {
+
         display: inline-block;
-        width: 30vw;
-        padding: 3vw;
+        margin: 0 1vw;
+        width: 20vw;
+        height: 80vh;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-    }
-    .carousel--item figure {
-        position: relative;
-        z-index: 1;
-        display: block;
-        height: 0;
-        padding-bottom: 56.25%;
-        overflow: hidden;
-    }
-    .carousel--item figure img {
-        position: absolute;
-        z-index: 1;
-        height: 100%;
-        width: 100%;
-        -o-object-fit: cover;
-        object-fit: cover;
-        vertical-align: middle;
-        transform-origin: center;
-    }
-    
-    .carousel--item h2 {
-        position: absolute;
-        z-index: 1;
-        bottom: 1.8vw;
-        font-size: 6vw;
-        bottom: 1vw;
-        color: #fff;
     }
     .carousel--progress {
         position: fixed;
@@ -232,4 +229,51 @@ export default {
         transform: scaleX(0);
         transform-origin: 0% 0%;
     }
+  .planets_cards__item {
+    width: 100%;
+    height: 100%;
+
+    background-image: url("../images/icons/Model_planet.svg");
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: 100%;
+
+    box-shadow: 50px 5px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    white-space: pre-wrap;
+    text-decoration: none;
+  }
+  .planets_cards__item > h1 {
+    width: 100%;
+    height: 65%;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    font-style: normal;
+    font-weight: 300;
+    font-size: 7em;
+    color: #ffffff;
+    text-transform: capitalize; 
+  }
+  .planets_cards__item > p {
+    font-family: "League Spartan";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 1.2em;
+    line-height: 23px;
+    letter-spacing: 0.075em;
+    color: rgba(255, 255, 255, 0.7);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 35%;
+  }
 </style>

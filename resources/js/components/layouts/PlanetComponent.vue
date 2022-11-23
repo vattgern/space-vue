@@ -16,7 +16,7 @@
                     <p>{{ '0' + (this.planets.length) }}</p>
                 </div>
             </div>
-            <img :src="'./images/icons/Texture_01.svg'" alt="qwerty">
+            <img :src="'/images/icons/Texture_01.svg'" alt="qwerty">
         </div>
         <div class="planet_block">
             <div class="planet_block__item">
@@ -30,20 +30,18 @@
                 <img :src="'./images/icons/plus.svg'" alt="">
             </div>
         </div>
-        <div class="planet_block planet_view">
-            <!-- <img :src="'./images/icons/Planet_01.svg'" alt="qwerty"> -->
-        </div>
+        <div class="planet_block planet_view"></div>
     </div>
 </template>
 <script>
 import * as THREE from 'three';
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
-import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js';
 export default {
     name: "PlanetComponent",
     data(){
         return{
-            planetCount: 0,
+            planetCount: this.$route.params['id'] - 1,
             planets: [
                 {
                     name: 'Mercury',
@@ -109,46 +107,45 @@ export default {
         }
     },
     mounted(){
-        const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        const container = document.querySelector('.planet_view');
-		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-		const renderer = new THREE.WebGLRenderer();
-		renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
-		document.querySelector('.planet_view').appendChild( renderer.domElement );
-		
-        // --------------------------------------------------
-        const light = new THREE.AmbientLight(0xffffff, 0.75);
-        scene.add(light);
-        const light2 = new THREE.HemisphereLight(0xffff, 1);
-        scene.add(light2);
-        // --------------------------------------------------
-        // --------------------------------------------------
-        let controls = new OrbitControls(camera, renderer.domElement);
-        controls.addEventListener('change',renderer);
-    
-        camera.position.set(1,1,1);
-        // --------------------------------------------------
-        // --------------------------------------------------
-        const loader = new GLTFLoader();
-        loader.load('./models/mars/scene.gltf', (gltf) => {
-            let planet = gltf.scene.children[0];
-            let box3 = new THREE.Box3().setFromObject(planet);
-            let center = new THREE.Vector3();
-            box3.getCenter(center);
-            planet.position.sub(center);
-            scene.add(gltf.scene);
-        });
-        // --------------------------------------------------
-		function animate() {
-            requestAnimationFrame( animate );
-			renderer.render( scene, camera );
-		};
-		animate();
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x000000);
+      const container = document.querySelector('.planet_view');
+		  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+		  const renderer = new THREE.WebGLRenderer();
+		  renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
+		  document.querySelector('.planet_view').appendChild( renderer.domElement );
+	
+      // --------------------------------------------------
+      const light = new THREE.AmbientLight(0xffffff, 0.75);
+      scene.add(light);
+      const light2 = new THREE.HemisphereLight(0xffff, 1);
+      scene.add(light2);
+      // --------------------------------------------------
+      // --------------------------------------------------
+      let controls = new OrbitControls(camera, renderer.domElement);
+      controls.addEventListener('change',renderer);
+  
+      camera.position.set(1,1,1);
+      // --------------------------------------------------
+      // --------------------------------------------------
+      const loader = new GLTFLoader();
+      loader.load('/models/mars/scene.gltf', (gltf) => {
+          let planet = gltf.scene.children[0];
+          let box3 = new THREE.Box3().setFromObject(planet);
+          let center = new THREE.Vector3();
+          box3.getCenter(center);
+          planet.position.sub(center);
+          scene.add(gltf.scene);
+      });
+      // --------------------------------------------------
+		  function animate() {
+              requestAnimationFrame( animate );
+		  	renderer.render( scene, camera );
+		  };
+		  animate();
     },
     methods:{
         planetCountChange(){
-            console.log('ghkjfg')
             if(this.planetCount === this.planets.length - 1){
                 this.planetCount = 0;
             } else{
