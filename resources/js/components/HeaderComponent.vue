@@ -26,13 +26,13 @@
             </a>
           </ul>
           <div class="header_nav_moblie">
-            <img :src="'./images/icons/close.svg'"
+            <img :src="'/images/icons/close.svg'"
                 v-on:click="burgerMenu = false"
                 alt="">
           </div>
         </nav>
         <div class="header_menu">
-            <img :src="'./images/icons/Burger.svg'"
+            <img :src="'/images/icons/Burger.svg'"
                  v-show="authMenu"
                  v-on:click="showModel"
                  alt="qwerty" />

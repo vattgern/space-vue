@@ -1,6 +1,6 @@
 <template>
     <div class="planet">
-        <div class="planet_block">
+        <div class="planet_block" id="sideNav">
             <div class="sideNavigation" v-on:click="planetCountChange">
                 <div class="lines">
                     <div class="line"></div>
@@ -16,11 +16,11 @@
                     <p>{{ '0' + (this.planets.length) }}</p>
                 </div>
             </div>
-            <img :src="'/images/icons/Texture_01.svg'" alt="qwerty">
+            <img :src="'/models/mars/textures/Material.001_baseColor.jpeg'" class="textures" alt="qwerty">
         </div>
-        <div class="planet_block">
+        <div class="planet_block" id="aboutPlanet">
             <div class="planet_block__item">
-                <div class="planet_block__p">
+                <div class="planet_block__p" v-on:click="planetCountChange">
                     <p>{{  '0' + (this.planetCount + 1) }}</p>
                     <hr>
                     <p>{{ '0' + (this.planets.length) }}</p>
@@ -107,14 +107,22 @@ export default {
         }
     },
     mounted(){
-      const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x000000);
-      const container = document.querySelector('.planet_view');
-		  const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
-		  const renderer = new THREE.WebGLRenderer();
-		  renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
-		  document.querySelector('.planet_view').appendChild( renderer.domElement );
-	
+        console.log(window.outerWidth);
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        const container = document.querySelector('.planet_view');
+		const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 10000 );
+		const renderer = new THREE.WebGLRenderer();
+        if(window.outerWidth < 1024){
+            renderer.setSize( container.clientWidth, container.clientHeight);
+        } else {
+            renderer.setSize( container.clientWidth + 250, container.clientHeight - 100);
+        }
+        if(window.outerWidth < 767) {
+            renderer.setSize( container.clientWidth, container.clientHeight);
+        }
+	    document.querySelector('.planet_view').appendChild( renderer.domElement );
+
       // --------------------------------------------------
       const light = new THREE.AmbientLight(0xffffff, 0.75);
       scene.add(light);
@@ -124,8 +132,14 @@ export default {
       // --------------------------------------------------
       let controls = new OrbitControls(camera, renderer.domElement);
       controls.addEventListener('change',renderer);
-  
+
       camera.position.set(1,1,1);
+      if(window.outerWidth < 1024){
+        camera.position.set(1,1,2);
+      }
+      if(window.outerWidth < 767) {
+            camera.position.set(1,1,3);
+      }
       // --------------------------------------------------
       // --------------------------------------------------
       const loader = new GLTFLoader();
@@ -156,9 +170,6 @@ export default {
 }
 </script>
 <style scoped>
-/*.main_planet_01 {*/
-/*    justify-content: flex-end;*/
-/*}*/
 .planet {
     display: flex;
     height: 85vh;
@@ -172,7 +183,7 @@ export default {
 }
 .planet_view canvas{
     position: absolute;
-}   
+}
 .planet_block {
     display: flex;
 }
@@ -234,14 +245,7 @@ export default {
 
 .planet_block:nth-child(3) {
     width: 60%;
-    /* justify-content: flex-end;
-    align-items: flex-end; */
 }
-/* .planet_block:nth-child(3) > img {
-    width: 90%;
-} */
-/* -------------------------------- */
-/* Цифры сверху */
 .planet_block__p {
     display: flex;
     flex-direction: row;
@@ -292,4 +296,119 @@ export default {
     margin-left: 60%;
 }
 /* -------------------------------- */
+@media screen and (max-width: 1270px) and (min-width: 1024px){
+    .countPage p{
+        font-size: 1.5vw;
+    }
+    .planet_block__p p{
+        font-size: 1.5vw;
+    }
+    .textures{
+        width: 100%;
+        height: 50%;
+        border: 2px white solid;
+    }
+}
+@media screen and (max-width: 1023px) and (min-width: 768px){
+    .planet{
+        width: 100vw;
+        height: 100%;
+        flex-direction: column-reverse;
+        align-items: flex-end;
+    }
+    .planet_view{
+        width: 100vw;
+        height: 50vh;
+        position: relative;
+    }
+    /* -------------------------- */
+    /* Боковая навигация */
+    #sideNav{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30vw;
+        height: 62.5%;
+
+        display: flex;
+        justify-content: center;
+    }
+    .textures{
+        display: none;
+    }
+    .countPage p{
+        font-size: 2vw;
+    }
+    /* -------------------------- */
+    /* -------------------------- */
+    #aboutPlanet{
+        width: 100vw;
+    }
+    .planet_block__p{
+        margin-right: 65%;
+    }
+    .planet_block__p p{
+        font-size: 2vw;
+    }
+    .planet_block__item h1{
+        font-size: 5rem;
+        padding: 0;
+        margin: 0;
+    }
+    .planet_block__item p{
+        font-size: 2vw;
+        margin: 0;
+    }
+    /* -------------------------- */
+}
+@media screen and (max-width: 767px){
+    .planet{
+        width: 100vw;
+        height: 100%;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+    .planet_view{
+        width: 100vw;
+        height: 45vh;
+    }
+    /* -------------------------- */
+    /* Боковая навигация */
+    #sideNav{
+        display: none;
+    }
+    .textures{
+        display: none;
+    }
+    .countPage p{
+        font-size: 2vw;
+    }
+    /* -------------------------- */
+    /* -------------------------- */
+    #aboutPlanet{
+        width: 100vw;
+    }
+    #aboutPlanet{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .planet_block__p{
+        margin: 0;
+    }
+    .planet_block__p p{
+        font-size: 2rem;
+    }
+    .planet_block__item h1{
+        font-size: 3rem;
+        width: 100%;
+        margin-left: -10%;
+        text-align: center;
+    }
+    .planet_block__item p{
+        font-size: 4vw;
+        margin: 0;
+    }
+    /* -------------------------- */
+}
 </style>
