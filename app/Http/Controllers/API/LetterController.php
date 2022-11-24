@@ -39,4 +39,15 @@ class LetterController extends Controller
            'code' => 200
         ]);
     }
+    public function approve($id){
+        $letter = Letter::find($id);
+        $letter->update([
+            'isAdmit' => true
+        ]);
+        return response()->json([
+            'msg' => 'письмо одобрено',
+            'code' => 200,
+            'data' => $letter,
+        ]);
+    }
 }

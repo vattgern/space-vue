@@ -6,75 +6,29 @@
         <div class="admin-users-main">
             <img :src="'./images/icons/Left-white.svg'"
                 class="left"
+                v-on:click="prev"
                 alt="">
             <img :src="'./images/icons/Right-white.svg'"
                 alt=""
-
+                v-on:click="next"
                 class="right">
             <div class="slider" id="slider">
-                <div class="obshi_div">
-                    <h1 class="h1_mail">_E-MAIL:</h1>
-                    <p class="p1_mail">sahsawot68@mail.ru</p>
-                    <h1 class="h1_letter">_LETTER:</h1>
-                    <div class="div_v_dive">
-                        <p class="text_v_dive">et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                            similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                            rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                            nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-                            repellendus.
+                <div class="letter">
+                    <div class="letter-email">
+                        <h1>E-MAIL:</h1>
+                        <p>{{ letters[index].email }}</p>
+                    </div>
+                    <div class="letter-text">
+                        <h2>LETTER:</h2>
+                        <p class="text_v_dive">{{ letters[index].content }}</p>
+                    </div>
+                    <div class="letter-btns">
+                        <button class="approve" v-on:click="approveLetter(letters[index].id)">APPROVE</button>
+                        <button class="delete" v-on:click="deleteLetter(letters[index].id)">DELETE</button>
+                        <p class="status" v-if="letters[index].isAdmit">
+                            ОДОБРЕНО
                         </p>
                     </div>
-                    <button class="approve">APPROVE</button>
-                    <button class="but_x">X</button>
-                </div>
-                <div class="obshi_div">
-                    <h1 class="h1_mail">_E-MAIL:</h1>
-                    <p class="p1_mail">sahsawot68@mail.ru</p>
-                    <h1 class="h1_letter">_LETTER:</h1>
-                    <div class="div_v_dive">
-                        <p class="text_v_dive">et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                            similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                            rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                            nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-                            repellendus.
-                        </p>
-                    </div>
-                    <button class="approve">APPROVE</button>
-                    <button class="but_x">X</button>
-                </div>
-                <div class="obshi_div">
-                    <h1 class="h1_mail">_E-MAIL:</h1>
-                    <p class="p1_mail">sahsawot68@mail.ru</p>
-                    <h1 class="h1_letter">_LETTER:</h1>
-                    <div class="div_v_dive">
-                        <p class="text_v_dive">et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                            similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                            rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                            nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-                            repellendus.
-                        </p>
-                    </div>
-                    <button class="approve">APPROVE</button>
-                    <button class="but_x">X</button>
-                </div>
-                <div class="obshi_div">
-                    <h1 class="h1_mail">_E-MAIL:</h1>
-                    <p class="p1_mail">sahsawot68@mail.ru</p>
-                    <h1 class="h1_letter">_LETTER:</h1>
-                    <div class="div_v_dive">
-                        <p class="text_v_dive">et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                            deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident,
-                            similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-                            rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque
-                            nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-                            repellendus.
-                        </p>
-                    </div>
-                    <button class="approve">APPROVE</button>
-                    <button class="but_x">X</button>
                 </div>
             </div>
         </div>
@@ -85,11 +39,59 @@ import api from '../../api';
     export default {
         data(){
             return{
-                count: 4,
+                index: 0,
+                letters: [
+                    {
+                        email: '',
+                        content: '',
+                        id: '',
+                        isAdmit: false,
+                    }
+                ]
             }
         },
+        mounted(){
+            this.getLetters();
+        }, 
         methods:{
-
+            getLetters(){
+                api.get('http://127.0.0.1:8000/api/letters').then(response => {
+                    this.letters = response.data.data;
+                    console.log(this.letters);
+                });
+            },
+            approveLetter(id){
+                api.put('http://127.0.0.1:8000/api/letters/' + id).then(response => {
+                    this.setModal(response.data.msg, 'auth');
+                    this.getLetters();
+                });
+            },
+            deleteLetter(id){
+                api.delete('http://127.0.0.1:8000/api/letters/' + id).then(response => {
+                    console.log(response.data);
+                    this.index = 0;
+                    this.getLetters();
+                })
+            },
+            next(){
+                if(this.letters.length == this.index){
+                    this.index = 0
+                } else {
+                    this.index++;
+                }
+            },
+            prev(){
+                if(this.index <= 0){
+                    this.index = this.letters.length;
+                } else {
+                    this.index--;
+                }
+            },
+            setModal(text, classes){
+                this.$store.state.modalShow = true;
+                this.$store.state.modalMessage = text;
+                this.$store.state.modalClass = classes;
+            },
         }
     }
 </script>
@@ -110,8 +112,11 @@ import api from '../../api';
         cursor: pointer;
     }
     .slider{
-        width: 200%;
+        width: 100%;
+        height: 80vh;
         display: flex;
+        align-items: center;
+        justify-content: center;
         flex-direction: row;
     }
     .admin-users-main{
@@ -129,70 +134,66 @@ import api from '../../api';
         margin: 2.5% 7%;
         letter-spacing: 0.15vw;
     }
-    .obshi_div{
-        margin-left: 8vw;
-        margin-top: 4vw;
-        border: 2px solid ;
-        width: 24vw;
+    .letter{
+        border: 2px solid white;
+        width: 55vw;
         height: 35vw;
+        display: flex;
+        flex-direction: column;
     }
-
-    .h1_mail{
-        width: 4.5vw;
-        margin-top: 2vw;
-        margin-left: 1.5vw;
-        font-size: 1vw;
+    .letter-email{
+        width: 90%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        gap: 1vw;
+        align-items: center;
+        margin: 0 5%;
         font-family: sans-serif;
     }
-
-    .p1_mail{
-        margin-top: -1.9vw;
-        margin-left: 7vw;
-        font-size: 0.8vw;
+    .letter-text{
+        width: 90%;
+        margin: 0 5%;
+        height: 60%;
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
         font-family: sans-serif;
     }
-
-    .h1_letter{
-        width: 4.5vw;
-        margin-top: 2vw;
-        margin-left: 1.5vw;
-        font-size: 1vw;
-        font-family: sans-serif;
+    .letter-text p{
+        line-height: 1.5vw;
     }
-
-    .div_v_dive{
-        margin-left: 1.5vw;
-        border: 1px solid ;
-        width: 21vw;
-        height: 23vw;
+    .letter-btns{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
     }
-
-    .text_v_dive{
-        margin-left: 1vw;
-        width: 19vw;
-        font-size: 1vw;
-        font-family: sans-serif;
+    .letter-btns > *{
+        margin: 2.5%;
     }
-
     .approve{
         border: 1px solid white;
         color: white;
         background-color: #000;
-        margin-top: 1.2vw;
-        margin-left: 1.5vw;
-        height: 2.5vw;
-        width: 17vw;
+        padding: 1vw 2vw;
+        cursor: pointer;
     }
 
-    .but_x{
+    .delete{
         border: 1px solid white;
         color: white;
         background-color: #000;
-        margin-left: 1.2vw;
-        width: 3vw;
-        height: 2.5vw;
+        padding: 1vw 2vw;
+        cursor: pointer;
     }
-
+    .status{
+        font-family: sans-serif;
+        font-weight: bold;
+        padding: 1vw 2vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
     .obshi_div2{
         margin-left: 40vw;
         margin-top: -35.2vw;

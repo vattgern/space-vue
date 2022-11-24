@@ -53,7 +53,10 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+        padding: 2.5% 5%;
     }
     .notification-exit{
         width: 25%;
@@ -62,9 +65,6 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-        font-size: 1rem;
-        font-weight: 300;
         cursor: pointer;
     }
     .notification-exit img{
@@ -76,5 +76,11 @@
     }
     .auth{
         color: blue;
+    }
+    @media screen and (max-width: 450px){
+        .notification{
+            width: 75vw;
+            height: 7.5vh;
+        }
     }
 </style>

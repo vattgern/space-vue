@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('email');
             $table->text('content');
+            $table->boolean('isAdmit');
             $table->timestamps();
         });
     }

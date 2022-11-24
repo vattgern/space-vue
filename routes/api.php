@@ -32,3 +32,4 @@ Route::get('/letters',[LetterController::class,'all']);
 Route::get('/letters/{id}',[LetterController::class,'index']);
 Route::post('/letter',[LetterController::class,'store']);
 Route::delete('/letters/{id}',[LetterController::class,'destroy']);
+Route::put('/letters/{id}',[LetterController::class, 'approve']);

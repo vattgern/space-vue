@@ -406,7 +406,7 @@ export default {
       height: 35%;
     }
   }
-  @media screen and (max-width: 425px) and (min-width: 376px){
+  @media screen and (max-width: 425px) and (min-width: 377px){
     .carousel--item {
         display: inline-block;
         margin: 5vw 1vw;
@@ -468,7 +468,7 @@ export default {
         height: 35%;
       }
   }
-  @media screen and (max-width:375px){
+  @media screen and (max-width:376px){
     .carousel--item {
         display: inline-block;
         margin: 5vw 1vw;

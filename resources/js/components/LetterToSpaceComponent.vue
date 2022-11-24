@@ -13,7 +13,7 @@
             <textarea class="text" v-model="text" placeholder="WRITE SOMETHING"></textarea>
         </div>
         <div class="letterSubmit">
-            <button class="submit_button">SEND</button>
+            <button class="submit_button" v-on:click="sendLetter">SEND</button>
         </div>
         <div class="backText">
             <p>
@@ -32,12 +32,44 @@
 </template>
 
 <script>
+import api from '../api';
     export default {
         data(){
             return{
                 email: '',
                 text: ''
             }
+        },
+        methods:{
+            sendLetter(){
+                if(this.email == '' || this.text == ''){
+                    this.setModal("Пустые данные", "danger");
+                } else {
+                    if(this.email.indexOf('@') > -1){
+                        api.post('http://127.0.0.1:8000/api/letter',{
+                            'email' : this.email,
+                            'content' : this.text,
+                            'isAdmit' : false,
+                        }).then(response => {
+                            if(response.errors){
+                                setModal("Неверно введены данные", 'danger');
+                            } else {
+                                this.email = ''
+                                this.text = ''
+                                this.setModal("Письмо отправлено", 'auth');
+                                this.$store.state.letter = false
+                            }
+                        });
+                    } else {
+                        this.setModal("Почта неверно введена", "danger");
+                    }
+                }
+            }, 
+            setModal(text, classes){
+                this.$store.state.modalShow = true;
+                this.$store.state.modalMessage = text;
+                this.$store.state.modalClass = classes;
+            },
         }
     }
 </script>

@@ -24,8 +24,8 @@ class LetterRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
-            'content' => 'required|min:10'
+            'email' => 'required',
+            'content' => 'required'
         ];
     }
 }
