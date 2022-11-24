@@ -5,10 +5,11 @@
 </template>
 <script>
 import SliderComponent from '../SliderComponent.vue';
-
     export default {
     data() {
-        return {};
+        return {
+
+        };
     },
     components: { SliderComponent }
 }

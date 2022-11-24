@@ -3,52 +3,42 @@
             <div class="modal__header">
                 <figure class="logo">
                     <img :src="'./images/icons/Logo.svg'"
-                         v-on:click="closeModel"
-                         alt="">
+                        v-on:click="closeModel"
+                        alt="">
                 </figure>
                 <figure class="close">
                     <img :src="'./images/icons/close.svg'"
-                         v-on:click="closeModel"
-                         alt="">
+                        v-on:click="closeModel"
+                        alt="">
                 </figure>
             </div>
             <div class="modal__body">
                 <form class="modal__form">
                     <div v-show="modeLogin">
                         <input type="email"
-                                name="email"
-                                id="email"
                                 v-model="this.login.email"
                                 placeholder="E-mail">
                     </div>
 
                     <div v-show="!modeLogin">
                         <input type="email"
-                                name="email"
-                                id="email"
                                 v-model="this.register.email"
                                 placeholder="E-mail">
                     </div>
 
                     <div v-show="modeLogin">
                         <input type="password"
-                                name="password"
-                                id="password"
                                 v-model="this.login.password"
                                 placeholder="Password">
                     </div>
 
                     <div v-show="!modeLogin">
                         <input type="password"
-                                name="password"
-                                id="password"
                                 v-model="this.register.password"
                                 placeholder="Password">
                     </div>
                     <div v-show="!modeLogin">
                         <input type="password"
-                                name="password"
-                                id="password"
                                 v-model="this.register.confirmPass"
                                 placeholder="Confirm password">
                     </div>
@@ -65,7 +55,7 @@
 
 <script>
 import api from '../api';
-
+import store from '../store';
     export default {
         data(){
             return{
@@ -114,10 +104,20 @@ import api from '../api';
                 }).then(response =>{
                     this.login.email = '';
                     this.login.password = '';
-
-                    window.localStorage.setItem('token',response.data['access_token']);
-                    this.roleCheck();
+                    if(response.data['code'] == 401){
+                        console.log(response.data);
+                        this.setModal(response.data['msg'], 'danger');
+                    } else {
+                        this.setModal('Вы вошли', 'auth');
+                        window.localStorage.setItem('token',response.data['access_token']);
+                        this.roleCheck();
+                    }
                 });
+            },
+            setModal(text, classes){
+                this.$store.state.modalShow = true;
+                this.$store.state.modalMessage = text;
+                this.$store.state.modalClass = classes;
             },
             registerSend(){
                 api.post('http://127.0.0.1:8000/api/reg',{
@@ -135,13 +135,21 @@ import api from '../api';
             },
             formData(){
                 axios.get('/sanctum/csrf-cookie').then(response => {
-
                     if(this.modeLogin){
-                    // Если пользователь авторизуется
-                        this.loginSend();
+                        if(this.login.email == '' || this.login.password == ''){
+                            this.setModal("Пустые поля","danger");
+                        } else {
+                            this.loginSend();
+                        }
                     } else {
-                        if(this.register.password === this.register.confirmPass){
-                            this.registerSend();
+                        if(this.register.email == '' || this.register.password == '' || this.register.confirmPass == ''){
+                            this.setModal("Пустые поля", "danger");
+                        } else {
+                            if(this.register.password === this.register.confirmPass){
+                                this.registerSend();
+                            } else {
+                                this.setModal("Пароли не совпадают", "danger");
+                            }
                         }
                     }
                 });

@@ -5,16 +5,25 @@
                 {{ this.text }}
             </div>
             <div class="notification-exit">
-                закрыть
+                <img :src="'./images/icons/close.svg'" 
+                    v-on:click="close"
+                    alt="">
             </div>
         </div>
     </div>
 </template>
 
-<script setup>
-    props: {
-        text: String;
-        classes: String;
+<script>
+    export default{
+        props: {
+            text: String,
+            classes: String,
+        },
+        methods:{
+            close(){
+                this.$store.state.modalShow = false;
+            }
+        }
     }
 </script>
 
@@ -22,7 +31,7 @@
     .notification{
         position: absolute;
         left: 50%;
-        top: 20%;
+        top: 15%;
         width: 25vw;
         height: 7.5vh;
         transform: translate(-50%,-50%);
@@ -31,8 +40,9 @@
     .notification-area{
         width: 100%;
         height: 100%;
-        background-color: white;
-        border-radius: 20px;
+        background-color: black;
+        border: 2px white solid;
+        border-radius: 10px;
         display: flex;
         flex-direction: row;
     }
@@ -43,6 +53,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-family: Georgia, 'Times New Roman', Times, serif;
     }
     .notification-exit{
         width: 25%;
@@ -56,7 +67,14 @@
         font-weight: 300;
         cursor: pointer;
     }
+    .notification-exit img{
+        width: 75%;
+        height: 75%;
+    }
     .danger{
-        
+        color: brown;
+    }
+    .auth{
+        color: blue;
     }
 </style>

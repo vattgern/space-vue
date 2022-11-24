@@ -6,15 +6,9 @@
             </div>
             <div class="info__text">
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    {{ this.developers[this.sliderIndex].text }}
                 </p>
-                <p>
-                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                    ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <p></p>
             </div>
         </div>
         <div class="about__us">
@@ -32,24 +26,24 @@
                 <p> {{ this.developers[this.sliderIndex].roles }} </p>
                 <ul>
                     <li>
-                        <a href="#">
+                        <a :href="this.developers[this.sliderIndex].links.telegram">
                             <img :src="'./images/icons/Telegram.svg'" alt="">
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a :href="this.developers[this.sliderIndex].links.insta">
                             <img :src="'./images/icons/Instagram.svg'" alt="">
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a :href="this.developers[this.sliderIndex].links.vk">
                             <img :src="'./images/icons/VK.svg'" alt="">
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-      </section>
+    </section>
 </template>
 
 <script>
@@ -62,16 +56,35 @@
                         name: 'Ruslan',
                         img:'./images/avatars/Ruslan.jpg',
                         roles: 'Разработка дизайна',
+                        text: "Ruslan Kormeev of the RP-42 group is our project" + 
+                                "designer and worked only when creating the design and several blocks",
+                        links: {
+                            insta: 'нехочу-искать',
+                            vk: 'https://vk.com/ck4fandr',
+                            telegram: 'нехочу-искать'
+                        }
                     },
                     {
                         name: 'Artem',
                         img: './images/avatars/Artem.jpg',
-                        roles: 'Разработка FRONT-END'
+                        roles: 'Разработка FRONT-END',
+                        text: 'Kim Artem, our front-end developer, worked tirelessly to deliver the project on time, using Vue JS to build the site, as well as standard HTML and CSS',
+                        links: {
+                            insta: 'нехочу-искать',
+                            vk: 'https://vk.com/haroniv4',
+                            telegram: 'нехочу-искать'
+                        }
                     },
                     {
                         name: 'Alexander',
-                        img: './images/avatars/Alexander.jpg',
-                        roles: 'Разработка BACK-END'
+                        img: './images/avatars/alex.gif',
+                        roles: 'Разработка BACK-END',
+                        text: 'Alexander back-end developer almost managed to get depressed, especially after he found out that you need to write documentation and various documents',
+                        links: {
+                            insta: 'нехочу-искать',
+                            vk: 'https://vk.com/lidjiev6664587',
+                            telegram: 'нехочу-искать'
+                        }
                     }
                 ]
             }
@@ -119,7 +132,6 @@
     font-weight: 200;
     color: white;
     font-size: 6vw;
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -129,11 +141,11 @@
     width: 100%;
 }
 .info__text p{
-    margin: 2.5% 20%;
+    margin: 5% 20%;
     line-height: 2vw;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     color: rgba(255, 255, 255, 0.7);
-    font-size: 1.25vw;
+    font-size: 1.5vw;
 }
 .about__us{
     width: 47vw;
@@ -144,7 +156,7 @@
 }
 .us__slider{
     width: 100%;
-    height: 50%;
+    height: 65%;
 
     display: flex;
     flex-direction: row;

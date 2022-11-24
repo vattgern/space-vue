@@ -6,7 +6,10 @@ export default createStore({
         return {
             loginModel: false,
             auth: false,
-            letter: false
+            letter: false,
+            modalShow: false,
+            modalMessage: '',
+            modalClass: ''
         }
     },
     mutations:{

@@ -81,6 +81,7 @@ import api from '../../api';
     }
     .sidebar-links li{
         cursor: pointer;
+        border: 2px red solid;
     }
 
 </style>

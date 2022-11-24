@@ -1,8 +1,11 @@
 <template>
     <div class="carousel">
         <div class="carousel--wrap">
-          <div class="carousel--item" v-for="(planet, index) of planets">
-            <router-link :to="{ name:'planet', params: { id: index + 1 } }" class="planets_cards__item">
+          <div class="carousel--item" 
+            v-for="(planet, index) of planets">
+            <router-link :to="{ name:'planet', params: { id: index + 1 } }" 
+              class="planets_cards__item"
+              :style="planet.img">
               <!-- <img :src="'./images/icons/Model_planet.svg'" alt="qwerty" /> -->
               <h1>{{ planet.name}}</h1>
               <p>
@@ -24,42 +27,50 @@ export default {
             {
               name: 'Mercury',
               text: 'Mercury is the first planet from the Sun and the smallest planet in the solar system. ' +
-                'This is one of the most extreme worlds. It received its name in honor of the messenger of the Roman gods. '
+                'This is one of the most extreme worlds. It received its name in honor of the messenger of the Roman gods. ',
+              img: "background-image: url('./images/planets/mercury.png')"
             },
             {
               name: 'Venus',
               text: 'Venus is the second planet from the Sun and the hottest planet in the solar system. ' +
-                'For the ancient people, Venus was a constant companion.'
+                'For the ancient people, Venus was a constant companion.',
+                img: "background-image: url('./images/planets/venus.png')"
             },
             {
               name: 'Earth',
               text: 'Of course we love our planet. And not only because it is a home, but also because ' +
-                'it is a unique place in the solar system and the Universe, because so far we know only life on Earth.' 
+                'it is a unique place in the solar system and the Universe, because so far we know only life on Earth.',
+                img: "background-image: url('./images/planets/earth.png')"
             },
             {
               name: 'Mars',
               text: 'Maps is the fourth planet from the Sun and the most similar to Earth in the solar system. ' +
-                'We know our neighbor also by the second name - "Red Planet".'
+                'We know our neighbor also by the second name - "Red Planet".',
+                img: "background-image: url('./images/planets/mars.png')"
             },
             {
               name: 'Jupiter',
               text: 'Jupiter fascinated observers 400 years ago, when it was possible to see it through the first telescopes. ' +
-                'This is a beautiful gas giant with swirling clouds, a mysterious spot, a family of satellites and many features. '
+                'This is a beautiful gas giant with swirling clouds, a mysterious spot, a family of satellites and many features. ',
+                img: "background-image: url('./images/planets/jupiter.png')"
             },
             {
               name: 'Saturn',
               text: 'Saturn is the sixth planet from the Sun and possibly the most beautiful object in the solar system. ' +
-                'This is the most distant planet from the star, which can be found from the Earth without using a telescope or binoculars. '
+                'This is the most distant planet from the star, which can be found from the Earth without using a telescope or binoculars. ',
+                img: "background-image: url('./images/planets/saturn.png')"
             },
             {
               name: 'Uranus',
               text: 'Uranus is the seventh planet from the Sun and the third largest planet in the solar system after Jupiter and Saturn. ' +
-                'Has a collection of satellites and a ring system. Although it can be found without the use of magnifying devices, '
+                'Has a collection of satellites and a ring system. Although it can be found without the use of magnifying devices, ',
+                img: "background-image: url('./images/planets/uranus.png')"
             },
             {
               name: 'Neptune',
               text: 'Neptune is the eighth from the Sun and the most distant planet in the solar system. ' +
-                'This is a gas giant and a representative of the category of solar planets of the outer system. '
+                'This is a gas giant and a representative of the category of solar planets of the outer system. ',
+                img: "background-image: url('./images/planets/neptune.png')"
             }
           ]
         }
@@ -132,9 +143,9 @@ export default {
                 window.addEventListener('touchmove', this.handleTouchMove);
                 window.addEventListener('touchend', this.handleTouchEnd);
                 //
-                window.addEventListener('mousedown', this.handleTouchStart);
-                window.addEventListener('mousemove', this.handleTouchMove);
-                window.addEventListener('mouseup', this.handleTouchEnd);
+                document.querySelector('.planets').addEventListener('mousedown', this.handleTouchStart);
+                document.querySelector('.planets').addEventListener('mousemove', this.handleTouchMove);
+                document.querySelector('.planets').addEventListener('mouseup', this.handleTouchEnd);
                 document.body.addEventListener('mouseleave', this.handleTouchEnd);
             }
             raf() {
@@ -231,7 +242,6 @@ export default {
     width: 100%;
     height: 100%;
 
-    background-image: url("../images/icons/Model_planet.svg");
     background-repeat: no-repeat;
     background-position: top right;
     background-size: 100%;
@@ -254,7 +264,7 @@ export default {
 
     font-style: normal;
     font-weight: 300;
-    font-size: 7em;
+    font-size: 6em;
     color: #ffffff;
     text-transform: capitalize; 
   }
@@ -276,11 +286,10 @@ export default {
   }
   @media screen and (max-width:1024px) and (min-width: 767px) {
     .carousel--item {
-    
         display: inline-block;
         margin: 5vw 1vw;
         width: 30vw;
-        height: 75vh;
+        height: 75vw;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -343,7 +352,7 @@ export default {
         display: inline-block;
         margin: 5vw 1vw;
         width: 30vw;
-        height: 65vh;
+        height: 65vw;
         -webkit-user-select: none;
         -moz-user-select: none;
         -ms-user-select: none;
@@ -469,8 +478,6 @@ export default {
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
-
-        border: 2px red solid;
       }
     
       .planets_cards__item {

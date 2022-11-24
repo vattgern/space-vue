@@ -121,7 +121,7 @@ export default {
         planetCountChange(){
             if(this.planetCount === this.planets.length - 1){
                 this.planetCount = 0;
-            } else{
+            } else {
                 this.planetCount++;
             }
             document.querySelector('.planet_view > canvas').remove();
@@ -145,9 +145,9 @@ export default {
 	        document.querySelector('.planet_view').appendChild( renderer.domElement );
 
             // --------------------------------------------------
-            const light = new THREE.AmbientLight(0xffffff, 0.75);
+            const light = new THREE.AmbientLight(0xffffff, 0.8);
             scene.add(light);
-            const light2 = new THREE.HemisphereLight(0xffff, 1);
+            const light2 = new THREE.HemisphereLight(0xffffff, 1);
             scene.add(light2);
             // --------------------------------------------------
             // --------------------------------------------------
@@ -158,7 +158,7 @@ export default {
                 camera.position.set(1,1,2);
             }
             if(window.outerWidth < 767) {
-                  camera.position.set(1,1,3);
+                camera.position.set(1,1,3);
             }
             if(this.planets[this.planetCount].name !== 'Mars'){
                 if(this.planets[this.planetCount].name === 'Saturn' || this.planets[this.planetCount].name === 'Uranus'){
@@ -253,6 +253,9 @@ export default {
 .planet_block:nth-child(1) > img:nth-child(2) {
     width: 90%;
     margin-top: 15%;
+}
+.textures{
+    opacity: 0;
 }
 /* ------------------------------------------ */
 .planet_block:nth-child(2) {
