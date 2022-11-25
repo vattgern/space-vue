@@ -56,7 +56,7 @@
                         name: 'Ruslan',
                         img:'./images/avatars/Ruslan.jpg',
                         roles: 'Разработка дизайна',
-                        text: "Ruslan Kormeev of the RP-42 group is our project" + 
+                        text: "Ruslan Kormeev of the RP-42 group is our project " + 
                                 "designer and worked only when creating the design and several blocks",
                         links: {
                             insta: 'нехочу-искать',
@@ -77,7 +77,7 @@
                     },
                     {
                         name: 'Alexander',
-                        img: './images/avatars/alex.gif',
+                        img: './images/avatars/sasha.jpg',
                         roles: 'Разработка BACK-END',
                         text: 'Alexander back-end developer almost managed to get depressed, especially after he found out that you need to write documentation and various documents',
                         links: {
@@ -111,7 +111,9 @@
 <style scoped>
 .about__block{
     width: 100vw;
+    height: 80vh;
     display: flex;
+    align-items: center;
     flex-direction: row;
 }
 .about__info{
@@ -120,6 +122,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 .info__header{
     width: 100%;

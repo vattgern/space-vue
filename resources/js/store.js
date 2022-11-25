@@ -9,7 +9,8 @@ export default createStore({
             letter: false,
             modalShow: false,
             modalMessage: '',
-            modalClass: ''
+            modalClass: '',
+            isLetters: false,
         }
     },
     mutations:{

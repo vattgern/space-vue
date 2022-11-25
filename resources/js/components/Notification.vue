@@ -5,7 +5,7 @@
                 {{ this.text }}
             </div>
             <div class="notification-exit">
-                <img :src="'./images/icons/close.svg'" 
+                <img :src="'/images/icons/close.svg'" 
                     v-on:click="close"
                     alt="">
             </div>

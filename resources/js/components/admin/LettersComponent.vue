@@ -4,32 +4,37 @@
             <h2>Letters</h2>
         </div>
         <div class="admin-users-main">
-            <img :src="'./images/icons/Left-white.svg'"
+            <div v-show="this.$store.state.isLetters">
+                <img :src="'./images/icons/Left-white.svg'"
                 class="left"
                 v-on:click="prev"
                 alt="">
-            <img :src="'./images/icons/Right-white.svg'"
-                alt=""
-                v-on:click="next"
-                class="right">
-            <div class="slider" id="slider">
-                <div class="letter">
-                    <div class="letter-email">
-                        <h1>E-MAIL:</h1>
-                        <p>{{ letters[index].email }}</p>
-                    </div>
-                    <div class="letter-text">
-                        <h2>LETTER:</h2>
-                        <p class="text_v_dive">{{ letters[index].content }}</p>
-                    </div>
-                    <div class="letter-btns">
-                        <button class="approve" v-on:click="approveLetter(letters[index].id)">APPROVE</button>
-                        <button class="delete" v-on:click="deleteLetter(letters[index].id)">DELETE</button>
-                        <p class="status" v-if="letters[index].isAdmit">
-                            ОДОБРЕНО
-                        </p>
+                <img :src="'./images/icons/Right-white.svg'"
+                    alt=""
+                    v-on:click="next"
+                    class="right">
+                <div class="slider" id="slider">
+                    <div class="letter">
+                        <div class="letter-email">
+                            <h1>E-MAIL:</h1>
+                            <p>{{ letters[index].email }}</p>
+                        </div>
+                        <div class="letter-text">
+                            <h2>LETTER:</h2>
+                            <p class="text_v_dive">{{ letters[index].content }}</p>
+                        </div>
+                        <div class="letter-btns">
+                            <button class="approve" v-on:click="approveLetter(letters[index].id)">APPROVE</button>
+                            <button class="delete" v-on:click="deleteLetter(letters[index].id)">DELETE</button>
+                            <p class="status" v-if="letters[index].isAdmit">
+                                ОДОБРЕНО
+                            </p>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div v-show="!this.$store.state.isLetters">
+                Letters none
             </div>
         </div>
     </div>
@@ -53,10 +58,21 @@ import api from '../../api';
         mounted(){
             this.getLetters();
         }, 
+        computed:{
+            showMes: function () {
+                return this.isLetters;                
+            }
+        },
         methods:{
             getLetters(){
                 api.get('http://127.0.0.1:8000/api/letters').then(response => {
-                    this.letters = response.data.data;
+                    if(response.data.data.lenght != 0){
+                        this.letters = response.data.data;
+                        this.$store.state.isLetters = true;
+                    } else {
+                        
+                        this.$store.state.isLetters = false;
+                    }
                     console.log(this.letters);
                 });
             },
@@ -68,7 +84,6 @@ import api from '../../api';
             },
             deleteLetter(id){
                 api.delete('http://127.0.0.1:8000/api/letters/' + id).then(response => {
-                    console.log(response.data);
                     this.index = 0;
                     this.getLetters();
                 })

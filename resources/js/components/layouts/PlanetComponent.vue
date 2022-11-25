@@ -142,6 +142,9 @@ export default {
             if(window.outerWidth < 767) {
                 renderer.setSize( container.clientWidth, container.clientHeight);
             }
+            if(window.outerWidth < 475){
+                renderer.setSize(container.clientWidth,container.clientHeight + 50);
+            }
 	        document.querySelector('.planet_view').appendChild( renderer.domElement );
 
             // --------------------------------------------------
@@ -154,20 +157,27 @@ export default {
             let controls = new OrbitControls(camera, renderer.domElement);
             controls.addEventListener('change',renderer);
 
-            if(window.outerWidth < 1024){
-                camera.position.set(1,1,2);
+            camera.position.set(100,100,100);
+            if(window.outerWidth <= 1024){
+                camera.position.set(115,115,115);
             }
             if(window.outerWidth < 767) {
-                camera.position.set(1,1,3);
+                camera.position.set(100,100,100);
             }
-            if(this.planets[this.planetCount].name !== 'Mars'){
-                if(this.planets[this.planetCount].name === 'Saturn' || this.planets[this.planetCount].name === 'Uranus'){
-                    camera.position.set(150,150,150);
-                } else {
-                    camera.position.set(100,100,100)
-                }
-            } else {
-              camera.position.set(1,1,1);
+            // if(this.planets[this.planetCount].name !== 'Mars'){
+            //     if(this.planets[this.planetCount].name === 'Saturn' || this.planets[this.planetCount].name === 'Uranus'){
+            //         camera.position.set(150,150,150);
+            //     } else {
+                    
+            //     }
+            // } else {
+            //   camera.position.set(1,1,1);
+            // }
+            if(this.planets[this.planetCount].name == 'Mars'){
+                camera.position.set(1,1,1);
+            }
+            if(window.outerWidth < 475){
+                camera.position.set(150,150,150)
             }
             // --------------------------------------------------
             // --------------------------------------------------
